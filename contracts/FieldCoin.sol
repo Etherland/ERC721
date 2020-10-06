@@ -35,12 +35,19 @@ contract FieldCoin is TradeableERC721Token, TokensMetadatas {
         return "1.2.0";
     }
 
-    function baseTokenURI() public override view returns (string memory) {
+    function baseTokenURI() public view returns (string memory) {
         return _baseTokenURI;
     }
 
     function setBaseTokenURI(string memory uri) public onlyOwner {
         _baseTokenURI = uri;
+    }
+
+    function tokenURI(uint256 _tokenId) external view returns (string memory) {
+        return Strings.strConcat(
+            baseTokenURI(),
+            Strings.uint2str(_tokenId)
+        );
     }
 
 }

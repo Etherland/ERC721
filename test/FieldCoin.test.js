@@ -261,7 +261,7 @@ contract('FieldCoin', (accounts) => {
     (await fieldCoin.ownerOf(3)).should.equal(user1);
     (await fieldCoin.ownerOf(4)).should.equal(user1);
     (await fieldCoin.ownerOf(5)).should.equal(user1);
-    await fieldCoin.safeTransferFrom(user1, user3, 1, { from: user2 }).should.be.fulfilled;
+    await fieldCoin.safeTransferFromWithData(user1, user3, 1, '0x01ffc9a7', { from: user2 }).should.be.fulfilled;
     await fieldCoin.safeTransferFrom(user1, user3, 2, { from: user2 }).should.be.fulfilled;
     await fieldCoin.safeTransferFrom(user1, user3, 3, { from: user2 }).should.be.fulfilled;
     await fieldCoin.safeTransferFrom(user1, user2, 4, { from: user2 }).should.be.fulfilled;

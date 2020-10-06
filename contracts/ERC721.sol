@@ -150,7 +150,7 @@ contract ERC721 is ERC165, IERC721 {
     * @param tokenId uint256 ID of the token to be transferred
     */
     function safeTransferFrom(address from, address to, uint256 tokenId) public override {
-        safeTransferFrom(from, to, tokenId, "");
+        safeTransferFromWithData(from, to, tokenId, "");
     }
 
     /**
@@ -165,7 +165,7 @@ contract ERC721 is ERC165, IERC721 {
     * @param tokenId uint256 ID of the token to be transferred
     * @param _data bytes data to send along with a safe transfer check
     */
-    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory _data) public override {
+    function safeTransferFromWithData(address from, address to, uint256 tokenId, bytes memory _data) public override {
         transferFrom(from, to, tokenId);
         require(_checkOnERC721Received(from, to, tokenId, _data), "data check is not ok");
     }

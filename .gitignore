@@ -11,3 +11,6 @@ build
 # NPM
 package-lock.json
 gas-report
+/gasReporterOutput.json
+/ERC721.iml
+/migrations/

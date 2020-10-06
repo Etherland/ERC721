@@ -66,17 +66,6 @@ contract TradeableERC721Token is ERC721Full, Ownable {
         _currentTokenId++;
     }
 
-    function baseTokenURI() public virtual view returns (string memory) {
-        return "";
-    }
-
-    function tokenURI(uint256 _tokenId) external override view returns (string memory) {
-        return Strings.strConcat(
-            baseTokenURI(),
-            Strings.uint2str(_tokenId)
-        );
-    }
-
     /**
     * Override isApprovedForAll to whitelist user's OpenSea proxy accounts to enable gas-less listings.
     */

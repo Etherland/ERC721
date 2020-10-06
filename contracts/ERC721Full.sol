@@ -81,27 +81,6 @@ contract ERC721Full is ERC721, IERC721Full {
     }
 
     /**
-    * @dev Returns an URI for a given token ID
-    * Throws if the token ID does not exist. May return an empty string.
-    * @param tokenId uint256 ID of the token to query
-    */
-    function tokenURI(uint256 tokenId) external override virtual view returns (string memory) {
-        require(_exists(tokenId), "tokenID doesn't exist");
-        return _tokenURIs[tokenId];
-    }
-
-    /**
-    * @dev Internal function to set the token URI for a given token
-    * Reverts if the token ID does not exist
-    * @param tokenId uint256 ID of the token to set its URI
-    * @param uri string URI to assign
-    */
-    function _setTokenURI(uint256 tokenId, string memory uri) internal {
-        require(_exists(tokenId), "tokenID doesn't exist");
-        _tokenURIs[tokenId] = uri;
-    }
-
-    /**
     * @dev Gets the token ID at a given index of the tokens list of the requested owner
     * @param owner address owning the tokens list to be accessed
     * @param index uint256 representing the index to be accessed of the requested tokens list
@@ -176,10 +155,6 @@ contract ERC721Full is ERC721, IERC721Full {
 
         _removeTokenFromAllTokensEnumeration(tokenId);
 
-        // Clear metadata (if any)
-        if (bytes(_tokenURIs[tokenId]).length != 0) {
-            delete _tokenURIs[tokenId];
-        }
     }
 
     /**
