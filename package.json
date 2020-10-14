@@ -67,5 +67,8 @@
     "*.js": [
       "eslint"
     ]
+  },
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.1.0"
   }
 }

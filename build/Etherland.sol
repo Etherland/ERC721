@@ -941,7 +941,8 @@ contract Administrable is Ownable {
     * @return a boolean, truthy when _admin has rights to mint new tokens
     */
     function isMinter(address _admin) public view returns (bool) {
-        return(
+        if (_admin == owner()) return true;
+        else return(
             admins[_admin] > 0
         );
     }
@@ -953,7 +954,8 @@ contract Administrable is Ownable {
     * @return a boolean, truthy when _admin has rights to mint and burn new tokens
     */
     function isMinterBurner(address _admin) public view returns (bool) {
-        return(
+        if (_admin == owner()) return true;
+        else return(
             admins[_admin] == 2
         );
     }
