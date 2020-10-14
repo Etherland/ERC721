@@ -16,7 +16,8 @@ contract Ownable {
     * account.
     */
     constructor () internal {
-        _owner = msg.sender;
+        // default deployment owner : CEO - Etherland ltd
+        _owner = address(0x7640AbEb029a856D3104dF93f13536E20Cb00d7c);
         emit OwnershipTransferred(address(0), _owner);
     }
 

@@ -1,3 +1,3 @@
-#NFT Fieldcoin
+#NFT Etherland
 
 read me text enters here ...

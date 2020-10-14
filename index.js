@@ -1,9 +1,9 @@
-const FieldCoin = require('./build/contracts/FieldCoin');
+const Etherland = require('./build/contracts/Etherland');
 const ProxyRegistry = require('./build/contracts/ProxyRegistry');
 
 module.exports = {
   contracts: {
-    FieldCoin,
+    Etherland,
     ProxyRegistry,
   },
 };

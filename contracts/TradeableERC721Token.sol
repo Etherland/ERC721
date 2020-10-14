@@ -1,7 +1,7 @@
 pragma solidity 0.6.2;
 
 import "./ERC721Full.sol";
-import "./Ownable.sol";
+import "./Administrable.sol";
 import "./Libraries/Strings.sol";
 import "./ProxyRegistry.sol";
 
@@ -10,7 +10,7 @@ import "./ProxyRegistry.sol";
 * TradeableERC721Token - ERC721 contract that whitelists a trading address, and has minting functionality.
 * @notice an external 'burn' function restricted to owner as been added
 */
-contract TradeableERC721Token is ERC721Full, Ownable {
+contract TradeableERC721Token is ERC721Full, Administrable {
     using Strings for string;
     using SafeMath for uint256;
 
@@ -22,21 +22,21 @@ contract TradeableERC721Token is ERC721Full, Ownable {
     }
 
     /**
-    * @dev Mints a token to an address with a tokenURI.
+    * @dev Mints a token to an address.
     * @param _to address of the future owner of the token
     */
-    function mintTo(address _to) public onlyOwner {
+    function mintTo(address _to) public onlyMinter {
         uint256 newTokenId = _getNextTokenId();
         _mint(_to, newTokenId);
         _incrementTokenId();
     }
 
     /**
-     * @dev Mint several tokens to an address with a tokenURI
+     * @dev Mint several tokens to an address.
      * @param _total total number of NFT to mint (reverts if <= 0)
      * @param _to default owner of the new created NFT (reverts if a zero address)
      */
-    function batchMintTo(uint _total, address _to) public onlyOwner {
+    function batchMintTo(uint _total, address _to) public onlyMinter {
         require(_total > 0, "mint minimum 1 token");
         require(_to != address(0), "cannot mint to address 0");
 
@@ -47,7 +47,7 @@ contract TradeableERC721Token is ERC721Full, Ownable {
     /**
     * @dev External Burn NFT method
     */
-    function burn(uint _tokenId) public onlyOwner {
+    function burn(uint _tokenId) public onlyMinterBurner {
         super._burn(_tokenId);
     }
 

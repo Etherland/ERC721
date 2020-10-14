@@ -1,14 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 /**
  * @dev Credits to
- * Mathieu L. @ ProApps 
- * https://proapps.fr
+ * Mathieu Lecoq
  * september 3rd 2020 
  *
  * @dev Property
- * all rights are reserved to EtherLand SAS / Fieldcoin
+ * all rights are reserved to EtherLand ltd
  *
- * @dev deployed with compiler version x.x.x
+ * @dev deployed with compiler version 0.6.2
  */
 pragma solidity 0.6.2;
 
@@ -16,11 +15,10 @@ import "./TradeableERC721Token.sol";
 import "./TokensMetadatas.sol";
 
 /**
-* @title Fieldcoin NFT Assets
+* @title Etherland NFT Assets
 */
-contract FieldCoin is TradeableERC721Token, TokensMetadatas {
+contract Etherland is TradeableERC721Token, TokensMetadatas {
     string private _baseTokenURI;
-
 
     constructor(
         string memory _name,
@@ -29,10 +27,6 @@ contract FieldCoin is TradeableERC721Token, TokensMetadatas {
         string memory baseURI
     ) public TradeableERC721Token(_name, _symbol, _proxyRegistryAddress) {
         _baseTokenURI = baseURI;
-    }
-
-    function openSeaVersion() public pure returns (string memory) {
-        return "1.2.0";
     }
 
     function baseTokenURI() public view returns (string memory) {
