@@ -10,11 +10,12 @@ after having installed dependencies :
 
 ### DEPLOYMENT FLOW
 1. If its not done yet, install truffle globally on your system, run `npm install -g truffle` in a terminal
-2. Create a .env file in project's root folder and set variables as defined in .env_sample.txt file at root :
-    - `DEPLOY_ETHERLAND_ERC721` to the boolean `true` if you allow deployment or `false` otherwise
+2. Set deployment variables in `./truffle-config.js` file :
     - `MNEMONIC` (seed words separated with a space)  
     - `INFURA_KEY` (goto https://infura.io to get an access key)
-3. Open a terminal at root and run : 
+3. Set allowance in `./migrations/2_deploy_contracts.js` file :
+    - `DEPLOY_ETHERLAND_ERC721` to the boolean `true` if you allow deployment or `false` otherwise
+4. Open a terminal at root and run : 
     - for Rinkeby : truffle deploy --network rinkeby
     - for Mainnet : truffle deploy --network live
     ##### *if you have the `up to date` message when deploying, maybe you've already deployed the contract before. In that case, if your contract doesnt deploy, simply add the `--reset` tag as follow : `truffle deploy --network rinkeby --reset`*

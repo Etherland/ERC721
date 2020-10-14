@@ -34,6 +34,7 @@
   "homepage": "https://github.com/Etherland/ERC721#README",
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
+    "@truffle/hdwallet-provider": "^1.1.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "node-fetch": "^2.6.0",
@@ -67,8 +68,5 @@
     "*.js": [
       "eslint"
     ]
-  },
-  "dependencies": {
-    "@truffle/hdwallet-provider": "^1.1.0"
   }
 }
