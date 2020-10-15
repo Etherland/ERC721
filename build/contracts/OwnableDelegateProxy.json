@@ -1,25 +1,25 @@
 {
   "contractName": "OwnableDelegateProxy",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"OpenSea compliant feature\",\"methods\":{},\"title\":\"OwnableDelegateProxy\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/macos/Desktop/Mat/Apps/ETHERLAND/Etherland_ERC721/ERC721/contracts/OwnableDelegateProxy.sol\":\"OwnableDelegateProxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/macos/Desktop/Mat/Apps/ETHERLAND/Etherland_ERC721/ERC721/contracts/OwnableDelegateProxy.sol\":{\"keccak256\":\"0x10ea8662e140be0f88f92878a07656151c2634e1b7355499433eff4a93296425\",\"urls\":[\"bzz-raw://085d8002476c8570ab0df5e617b5ef611612e77f5e11a2cf008ffa1bcb326fe0\",\"dweb:/ipfs/QmPaXii2SXdYS9wraiYXeDJo1HbycVf9cCnoiksgx12P5j\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220e32e34208498d2fd3bf9c1d676d3573eceffccdf24462510755f8cfc5024211b64736f6c63430006020033",
-  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220e32e34208498d2fd3bf9c1d676d3573eceffccdf24462510755f8cfc5024211b64736f6c63430006020033",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"OpenSea compliant feature\",\"methods\":{},\"title\":\"OwnableDelegateProxy\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/joachimlebrun/IdeaProjects/ERC721/contracts/OwnableDelegateProxy.sol\":\"OwnableDelegateProxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/joachimlebrun/IdeaProjects/ERC721/contracts/OwnableDelegateProxy.sol\":{\"keccak256\":\"0x10ea8662e140be0f88f92878a07656151c2634e1b7355499433eff4a93296425\",\"urls\":[\"bzz-raw://085d8002476c8570ab0df5e617b5ef611612e77f5e11a2cf008ffa1bcb326fe0\",\"dweb:/ipfs/QmPaXii2SXdYS9wraiYXeDJo1HbycVf9cCnoiksgx12P5j\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea264697066735822122090e681cfccdae188e76e1715eb63d980338c5e5bc815dc0b689877f2513d4df564736f6c63430006020033",
+  "deployedBytecode": "0x6080604052600080fdfea264697066735822122090e681cfccdae188e76e1715eb63d980338c5e5bc815dc0b689877f2513d4df564736f6c63430006020033",
   "sourceMap": "95:33:15:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;95:33:15;;;;;;;",
   "deployedSourceMap": "95:33:15:-:0;;;;;",
   "source": "pragma solidity 0.6.2;\n\n\n/**\n* @title OwnableDelegateProxy\n* @dev OpenSea compliant feature\n*/\ncontract OwnableDelegateProxy { }",
-  "sourcePath": "/Users/macos/Desktop/Mat/Apps/ETHERLAND/Etherland_ERC721/ERC721/contracts/OwnableDelegateProxy.sol",
+  "sourcePath": "/Users/joachimlebrun/IdeaProjects/ERC721/contracts/OwnableDelegateProxy.sol",
   "ast": {
-    "absolutePath": "/Users/macos/Desktop/Mat/Apps/ETHERLAND/Etherland_ERC721/ERC721/contracts/OwnableDelegateProxy.sol",
+    "absolutePath": "/Users/joachimlebrun/IdeaProjects/ERC721/contracts/OwnableDelegateProxy.sol",
     "exportedSymbols": {
       "OwnableDelegateProxy": [
-        2254
+        2261
       ]
     },
-    "id": 2255,
+    "id": 2262,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2253,
+        "id": 2260,
         "literals": [
           "solidity",
           "0.6",
@@ -35,31 +35,31 @@
         "contractKind": "contract",
         "documentation": "@title OwnableDelegateProxy\n@dev OpenSea compliant feature",
         "fullyImplemented": true,
-        "id": 2254,
+        "id": 2261,
         "linearizedBaseContracts": [
-          2254
+          2261
         ],
         "name": "OwnableDelegateProxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 2255,
+        "scope": 2262,
         "src": "95:33:15"
       }
     ],
     "src": "0:128:15"
   },
   "legacyAST": {
-    "absolutePath": "/Users/macos/Desktop/Mat/Apps/ETHERLAND/Etherland_ERC721/ERC721/contracts/OwnableDelegateProxy.sol",
+    "absolutePath": "/Users/joachimlebrun/IdeaProjects/ERC721/contracts/OwnableDelegateProxy.sol",
     "exportedSymbols": {
       "OwnableDelegateProxy": [
-        2254
+        2261
       ]
     },
-    "id": 2255,
+    "id": 2262,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2253,
+        "id": 2260,
         "literals": [
           "solidity",
           "0.6",
@@ -75,14 +75,14 @@
         "contractKind": "contract",
         "documentation": "@title OwnableDelegateProxy\n@dev OpenSea compliant feature",
         "fullyImplemented": true,
-        "id": 2254,
+        "id": 2261,
         "linearizedBaseContracts": [
-          2254
+          2261
         ],
         "name": "OwnableDelegateProxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 2255,
+        "scope": 2262,
         "src": "95:33:15"
       }
     ],
@@ -94,7 +94,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.0",
-  "updatedAt": "2020-10-14T22:13:44.117Z",
+  "updatedAt": "2020-10-15T20:40:47.729Z",
   "devdoc": {
     "details": "OpenSea compliant feature",
     "methods": {},

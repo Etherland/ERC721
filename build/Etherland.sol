@@ -844,8 +844,7 @@ contract Ownable {
     * account.
     */
     constructor () internal {
-        // default deployment owner : CEO - Etherland ltd
-        _owner = address(0x7640AbEb029a856D3104dF93f13536E20Cb00d7c);
+        _owner = address(msg.sender);
         emit OwnershipTransferred(address(0), _owner);
     }
 
@@ -1002,7 +1001,7 @@ contract Administrable is Ownable {
     modifier onlyMinterBurner() {
         require(
             canMintBurn(),
-            "denied : no admin minting-burning rights"
+            "denied : no admin burning rights"
         );
         _;
     }
@@ -1282,9 +1281,11 @@ contract Etherland is TradeableERC721Token, TokensMetadatas {
         string memory _name,
         string memory _symbol,
         address _proxyRegistryAddress,
-        string memory baseURI
+        string memory baseURI,
+        address _owner
     ) public TradeableERC721Token(_name, _symbol, _proxyRegistryAddress) {
         _baseTokenURI = baseURI;
+        _transferOwnership(_owner);
     }
 
     function baseTokenURI() public view returns (string memory) {
