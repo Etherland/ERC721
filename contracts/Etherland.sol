@@ -24,9 +24,11 @@ contract Etherland is TradeableERC721Token, TokensMetadatas {
         string memory _name,
         string memory _symbol,
         address _proxyRegistryAddress,
-        string memory baseURI
+        string memory baseURI,
+        address _owner
     ) public TradeableERC721Token(_name, _symbol, _proxyRegistryAddress) {
         _baseTokenURI = baseURI;
+        _transferOwnership(_owner);
     }
 
     function baseTokenURI() public view returns (string memory) {

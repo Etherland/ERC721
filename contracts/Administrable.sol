@@ -97,7 +97,7 @@ contract Administrable is Ownable {
     modifier onlyMinterBurner() {
         require(
             canMintBurn(),
-            "denied : no admin minting-burning rights"
+            "denied : no admin burning rights"
         );
         _;
     }

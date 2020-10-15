@@ -17,7 +17,7 @@ contract('Etherland', (accounts) => {
 
   beforeEach(async () => {
     proxyRegistry = await ProxyRegistry.new({ from: owner });
-    etherland = await Etherland.new(tokenName, tokenSymbol, proxyRegistry.address, baseURI, { from: owner });
+    etherland = await Etherland.new(tokenName, tokenSymbol, proxyRegistry.address, baseURI, owner, { from: user1 });
   });
 
   it('checks if contract implements interfaces right', async () => {
@@ -66,10 +66,6 @@ contract('Etherland', (accounts) => {
     await etherland.setBaseTokenURI(uri2, { from: user1 }).should.be.rejectedWith(EVMRevert);
     await etherland.setBaseTokenURI(uri2, { from: owner }).should.be.fulfilled;
     (await etherland.baseTokenURI()).toString().should.equal('URI2');
-  });
-
-  it('checks OpenSea version', async () => {
-    (await etherland.openSeaVersion()).toString().should.equal('1.2.0');
   });
 
   it('test burn function', async () => {
