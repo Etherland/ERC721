@@ -16,10 +16,9 @@ const owner = '0x7640AbEb029a856D3104dF93f13536E20Cb00d7c';
  * @notice run the `truffle deploy` command
  * @see readme
  */
-module.exports = async (deployer, network) => {
+module.exports = (deployer, network) => {
   // OpenSea proxy registry addresses for rinkeby and mainnet.
-  const openSeaProxy = await Promise.resolve(proxies[network]);
   if (DEPLOY_ETHERLAND_ERC721) {
-    await deployer.deploy(Etherland, NAME, SYMBOL, openSeaProxy, BASE_TOKEN_URI, owner, { gas: 2800000 });
+    deployer.deploy(Etherland, NAME, SYMBOL, proxies[network], BASE_TOKEN_URI, owner, { gas: 2800000 });
   } else console.error('please set variable DEPLOY_ETHERLAND_ERC721 to true before deploying (see /migrations/2_deploy_contracts)');
 };
