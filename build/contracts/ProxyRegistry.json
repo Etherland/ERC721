@@ -32,14 +32,14 @@
     "absolutePath": "/Users/macos/Desktop/Mat/Apps/ETHERLAND/Etherland_ERC721/ERC721/contracts/ProxyRegistry.sol",
     "exportedSymbols": {
       "ProxyRegistry": [
-        2262
+        2318
       ]
     },
-    "id": 2263,
+    "id": 2319,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2256,
+        "id": 2312,
         "literals": [
           "solidity",
           "0.6",
@@ -51,10 +51,10 @@
       {
         "absolutePath": "/Users/macos/Desktop/Mat/Apps/ETHERLAND/Etherland_ERC721/ERC721/contracts/OwnableDelegateProxy.sol",
         "file": "./OwnableDelegateProxy.sol",
-        "id": 2257,
+        "id": 2313,
         "nodeType": "ImportDirective",
-        "scope": 2263,
-        "sourceUnit": 2255,
+        "scope": 2319,
+        "sourceUnit": 2311,
         "src": "24:36:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -66,9 +66,9 @@
         "contractKind": "contract",
         "documentation": "@title ProxyRegistry\n@dev OpenSea compliant feature",
         "fullyImplemented": true,
-        "id": 2262,
+        "id": 2318,
         "linearizedBaseContracts": [
-          2262
+          2318
         ],
         "name": "ProxyRegistry",
         "nodeType": "ContractDefinition",
@@ -76,22 +76,22 @@
           {
             "constant": false,
             "functionSelector": "c4552791",
-            "id": 2261,
+            "id": 2317,
             "name": "proxies",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 2262,
+            "scope": 2318,
             "src": "154:55:16",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2254_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2310_$",
               "typeString": "mapping(address => contract OwnableDelegateProxy)"
             },
             "typeName": {
-              "id": 2260,
+              "id": 2316,
               "keyType": {
-                "id": 2258,
+                "id": 2314,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "162:7:16",
@@ -103,18 +103,18 @@
               "nodeType": "Mapping",
               "src": "154:40:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2254_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2310_$",
                 "typeString": "mapping(address => contract OwnableDelegateProxy)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 2259,
+                "id": 2315,
                 "name": "OwnableDelegateProxy",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 2254,
+                "referencedDeclaration": 2310,
                 "src": "173:20:16",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_OwnableDelegateProxy_$2254",
+                  "typeIdentifier": "t_contract$_OwnableDelegateProxy_$2310",
                   "typeString": "contract OwnableDelegateProxy"
                 }
               }
@@ -123,7 +123,7 @@
             "visibility": "public"
           }
         ],
-        "scope": 2263,
+        "scope": 2319,
         "src": "125:87:16"
       }
     ],
@@ -133,14 +133,14 @@
     "absolutePath": "/Users/macos/Desktop/Mat/Apps/ETHERLAND/Etherland_ERC721/ERC721/contracts/ProxyRegistry.sol",
     "exportedSymbols": {
       "ProxyRegistry": [
-        2262
+        2318
       ]
     },
-    "id": 2263,
+    "id": 2319,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2256,
+        "id": 2312,
         "literals": [
           "solidity",
           "0.6",
@@ -152,10 +152,10 @@
       {
         "absolutePath": "/Users/macos/Desktop/Mat/Apps/ETHERLAND/Etherland_ERC721/ERC721/contracts/OwnableDelegateProxy.sol",
         "file": "./OwnableDelegateProxy.sol",
-        "id": 2257,
+        "id": 2313,
         "nodeType": "ImportDirective",
-        "scope": 2263,
-        "sourceUnit": 2255,
+        "scope": 2319,
+        "sourceUnit": 2311,
         "src": "24:36:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -167,9 +167,9 @@
         "contractKind": "contract",
         "documentation": "@title ProxyRegistry\n@dev OpenSea compliant feature",
         "fullyImplemented": true,
-        "id": 2262,
+        "id": 2318,
         "linearizedBaseContracts": [
-          2262
+          2318
         ],
         "name": "ProxyRegistry",
         "nodeType": "ContractDefinition",
@@ -177,22 +177,22 @@
           {
             "constant": false,
             "functionSelector": "c4552791",
-            "id": 2261,
+            "id": 2317,
             "name": "proxies",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 2262,
+            "scope": 2318,
             "src": "154:55:16",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2254_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2310_$",
               "typeString": "mapping(address => contract OwnableDelegateProxy)"
             },
             "typeName": {
-              "id": 2260,
+              "id": 2316,
               "keyType": {
-                "id": 2258,
+                "id": 2314,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "162:7:16",
@@ -204,18 +204,18 @@
               "nodeType": "Mapping",
               "src": "154:40:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2254_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2310_$",
                 "typeString": "mapping(address => contract OwnableDelegateProxy)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 2259,
+                "id": 2315,
                 "name": "OwnableDelegateProxy",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 2254,
+                "referencedDeclaration": 2310,
                 "src": "173:20:16",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_OwnableDelegateProxy_$2254",
+                  "typeIdentifier": "t_contract$_OwnableDelegateProxy_$2310",
                   "typeString": "contract OwnableDelegateProxy"
                 }
               }
@@ -224,7 +224,7 @@
             "visibility": "public"
           }
         ],
-        "scope": 2263,
+        "scope": 2319,
         "src": "125:87:16"
       }
     ],
@@ -236,7 +236,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.0",
-  "updatedAt": "2020-10-14T22:13:44.117Z",
+  "updatedAt": "2020-10-15T22:44:43.337Z",
   "devdoc": {
     "details": "OpenSea compliant feature",
     "methods": {},

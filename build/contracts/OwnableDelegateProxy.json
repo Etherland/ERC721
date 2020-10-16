@@ -12,14 +12,14 @@
     "absolutePath": "/Users/macos/Desktop/Mat/Apps/ETHERLAND/Etherland_ERC721/ERC721/contracts/OwnableDelegateProxy.sol",
     "exportedSymbols": {
       "OwnableDelegateProxy": [
-        2254
+        2310
       ]
     },
-    "id": 2255,
+    "id": 2311,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2253,
+        "id": 2309,
         "literals": [
           "solidity",
           "0.6",
@@ -35,14 +35,14 @@
         "contractKind": "contract",
         "documentation": "@title OwnableDelegateProxy\n@dev OpenSea compliant feature",
         "fullyImplemented": true,
-        "id": 2254,
+        "id": 2310,
         "linearizedBaseContracts": [
-          2254
+          2310
         ],
         "name": "OwnableDelegateProxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 2255,
+        "scope": 2311,
         "src": "95:33:15"
       }
     ],
@@ -52,14 +52,14 @@
     "absolutePath": "/Users/macos/Desktop/Mat/Apps/ETHERLAND/Etherland_ERC721/ERC721/contracts/OwnableDelegateProxy.sol",
     "exportedSymbols": {
       "OwnableDelegateProxy": [
-        2254
+        2310
       ]
     },
-    "id": 2255,
+    "id": 2311,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2253,
+        "id": 2309,
         "literals": [
           "solidity",
           "0.6",
@@ -75,14 +75,14 @@
         "contractKind": "contract",
         "documentation": "@title OwnableDelegateProxy\n@dev OpenSea compliant feature",
         "fullyImplemented": true,
-        "id": 2254,
+        "id": 2310,
         "linearizedBaseContracts": [
-          2254
+          2310
         ],
         "name": "OwnableDelegateProxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 2255,
+        "scope": 2311,
         "src": "95:33:15"
       }
     ],
@@ -94,7 +94,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.0",
-  "updatedAt": "2020-10-14T22:13:44.117Z",
+  "updatedAt": "2020-10-15T22:44:43.337Z",
   "devdoc": {
     "details": "OpenSea compliant feature",
     "methods": {},
