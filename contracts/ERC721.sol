@@ -47,6 +47,21 @@ contract ERC721 is ERC165, IERC721 {
     *     bytes4(keccak256('safeTransferFrom(address,address,uint256,bytes)'))
     */
 
+    /**
+    * @dev Event emitting when a NFT transfer occured
+    */
+    event Transfer(address indexed from, address indexed to, uint256 tokenId);
+
+    /**
+    * @dev Event emitting when an address has been approved by an owner for spending a specific NFT
+    */
+    event Approval(address indexed owner, address indexed approved, uint256 tokenId);
+
+    /**
+    * @dev Event emitting when an address has been approved by an owner for spending any of its NFT
+    */
+    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
+
     constructor () public {
         // register the supported interfaces to conform to ERC721 via ERC165
         _registerInterface(_INTERFACE_ID_ERC721);

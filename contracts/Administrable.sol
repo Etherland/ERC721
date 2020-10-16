@@ -11,15 +11,19 @@ import "./Ownable.sol";
 contract Administrable is Ownable {
     /**
     * @dev ADMINS STORAGE 
-    * @dev rights are defined as integer(int16) as follow :
+    * @dev rights are integer(int16) defined as follow :
     *       1 : address can only mint tokens 
     *       2 : address can mint AND burn tokens
     */
     mapping(address => int16) private admins;
-    
+
+    /***** EVENTS *****/
+    event AdminRightsGranted(address indexed newAdmin, int16 adminRights);
+    event AdminRightsRevoked(address indexed noAdmin);
+
     /***** GETTERS *****/
     /**
-    * @dev know if an address has admin rights and what type of right it has
+    * @dev know if an address has admin rights and its type of rights
     * @param _admin the address to find admin rights of
     * @return int16 the admin right for _admin :
     *       1 : address can only mint tokens 
@@ -116,6 +120,7 @@ contract Administrable is Ownable {
     */
     function grantMinterRights(address _admin) external onlyOwner validAddress(_admin) {
         admins[_admin] = 1;
+        emit AdminRightsGranted(_admin, 1);
     }
 
     /**
@@ -125,6 +130,7 @@ contract Administrable is Ownable {
     */
     function grantMinterBurnerRights(address _admin) external onlyOwner validAddress(_admin) {
         admins[_admin] = 2;
+        emit AdminRightsGranted(_admin, 2);
     }
 
     /**
@@ -134,6 +140,7 @@ contract Administrable is Ownable {
     */
     function revokeAdminRights(address _admin) external onlyOwner validAddress(_admin) {
         admins[_admin] = 0;
+        emit AdminRightsRevoked(_admin);
     }
 
 }

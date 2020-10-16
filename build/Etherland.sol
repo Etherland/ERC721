@@ -313,6 +313,21 @@ contract ERC721 is ERC165, IERC721 {
     *     bytes4(keccak256('safeTransferFrom(address,address,uint256,bytes)'))
     */
 
+    /**
+    * @dev Event emitting when a NFT transfer occured
+    */
+    event Transfer(address indexed from, address indexed to, uint256 tokenId);
+
+    /**
+    * @dev Event emitting when an address has been approved by an owner for spending a specific NFT
+    */
+    event Approval(address indexed owner, address indexed approved, uint256 tokenId);
+
+    /**
+    * @dev Event emitting when an address has been approved by an owner for spending any of its NFT
+    */
+    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
+
     constructor () public {
         // register the supported interfaces to conform to ERC721 via ERC165
         _registerInterface(_INTERFACE_ID_ERC721);
@@ -844,6 +859,7 @@ contract Ownable {
     * account.
     */
     constructor () internal {
+        // default deployment owner : CEO - Etherland ltd
         _owner = address(msg.sender);
         emit OwnershipTransferred(address(0), _owner);
     }
@@ -915,15 +931,19 @@ pragma solidity 0.6.2;
 contract Administrable is Ownable {
     /**
     * @dev ADMINS STORAGE 
-    * @dev rights are defined as integer(int16) as follow :
+    * @dev rights are integer(int16) defined as follow :
     *       1 : address can only mint tokens 
     *       2 : address can mint AND burn tokens
     */
     mapping(address => int16) private admins;
-    
+
+    /***** EVENTS *****/
+    event AdminRightsGranted(address indexed newAdmin, int16 adminRights);
+    event AdminRightsRevoked(address indexed noAdmin);
+
     /***** GETTERS *****/
     /**
-    * @dev know if an address has admin rights and what type of right it has
+    * @dev know if an address has admin rights and its type of rights
     * @param _admin the address to find admin rights of
     * @return int16 the admin right for _admin :
     *       1 : address can only mint tokens 
@@ -1020,6 +1040,7 @@ contract Administrable is Ownable {
     */
     function grantMinterRights(address _admin) external onlyOwner validAddress(_admin) {
         admins[_admin] = 1;
+        emit AdminRightsGranted(_admin, 1);
     }
 
     /**
@@ -1029,6 +1050,7 @@ contract Administrable is Ownable {
     */
     function grantMinterBurnerRights(address _admin) external onlyOwner validAddress(_admin) {
         admins[_admin] = 2;
+        emit AdminRightsGranted(_admin, 2);
     }
 
     /**
@@ -1038,6 +1060,7 @@ contract Administrable is Ownable {
     */
     function revokeAdminRights(address _admin) external onlyOwner validAddress(_admin) {
         admins[_admin] = 0;
+        emit AdminRightsRevoked(_admin);
     }
 
 }
@@ -1277,6 +1300,11 @@ pragma solidity 0.6.2;
 contract Etherland is TradeableERC721Token, TokensMetadatas {
     string private _baseTokenURI;
 
+    /**
+    * @dev event emitting when the `_baseTokenUri` is updated by owner
+    */
+    event BaseTokenUriUpdated(string newUri);
+
     constructor(
         string memory _name,
         string memory _symbol,
@@ -1294,6 +1322,7 @@ contract Etherland is TradeableERC721Token, TokensMetadatas {
 
     function setBaseTokenURI(string memory uri) public onlyOwner {
         _baseTokenURI = uri;
+        emit BaseTokenUriUpdated(uri);
     }
 
     function tokenURI(uint256 _tokenId) external view returns (string memory) {

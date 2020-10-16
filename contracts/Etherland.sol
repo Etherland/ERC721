@@ -20,6 +20,11 @@ import "./TokensMetadatas.sol";
 contract Etherland is TradeableERC721Token, TokensMetadatas {
     string private _baseTokenURI;
 
+    /**
+    * @dev event emitting when the `_baseTokenUri` is updated by owner
+    */
+    event BaseTokenUriUpdated(string newUri);
+
     constructor(
         string memory _name,
         string memory _symbol,
@@ -37,6 +42,7 @@ contract Etherland is TradeableERC721Token, TokensMetadatas {
 
     function setBaseTokenURI(string memory uri) public onlyOwner {
         _baseTokenURI = uri;
+        emit BaseTokenUriUpdated(uri);
     }
 
     function tokenURI(uint256 _tokenId) external view returns (string memory) {
