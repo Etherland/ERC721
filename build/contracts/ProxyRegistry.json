@@ -1,0 +1,248 @@
+{
+  "contractName": "ProxyRegistry",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "proxies",
+      "outputs": [
+        {
+          "internalType": "contract OwnableDelegateProxy",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"proxies\",\"outputs\":[{\"internalType\":\"contract OwnableDelegateProxy\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"OpenSea compliant feature\",\"methods\":{},\"title\":\"ProxyRegistry\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/joachimlebrun/IdeaProjects/ERC721/contracts/ProxyRegistry.sol\":\"ProxyRegistry\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/joachimlebrun/IdeaProjects/ERC721/contracts/OwnableDelegateProxy.sol\":{\"keccak256\":\"0x10ea8662e140be0f88f92878a07656151c2634e1b7355499433eff4a93296425\",\"urls\":[\"bzz-raw://085d8002476c8570ab0df5e617b5ef611612e77f5e11a2cf008ffa1bcb326fe0\",\"dweb:/ipfs/QmPaXii2SXdYS9wraiYXeDJo1HbycVf9cCnoiksgx12P5j\"]},\"/Users/joachimlebrun/IdeaProjects/ERC721/contracts/ProxyRegistry.sol\":{\"keccak256\":\"0x0a054cd34afd2166b0b009c6732b3f6d9edf3c202ac7c9d758502eed9a1f85e7\",\"urls\":[\"bzz-raw://839172c96576a0e8c6a2ab9e02f7e3d3c5c4e432970df3d0190ec744e839e416\",\"dweb:/ipfs/QmTh6CoY9NHkpktSdDTzFtQs3MCLci4pTRds9qMF7q5SwR\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060bd8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063c455279114602d575b600080fd5b605060048036036020811015604157600080fd5b50356001600160a01b0316606c565b604080516001600160a01b039092168252519081900360200190f35b6000602081905290815260409020546001600160a01b03168156fea26469706673582212209f6a9aafedf188771f5b6ed8157c4e7c30744f141cc826a3354571029954b25f64736f6c63430006020033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063c455279114602d575b600080fd5b605060048036036020811015604157600080fd5b50356001600160a01b0316606c565b604080516001600160a01b039092168252519081900360200190f35b6000602081905290815260409020546001600160a01b03168156fea26469706673582212209f6a9aafedf188771f5b6ed8157c4e7c30744f141cc826a3354571029954b25f64736f6c63430006020033",
+  "sourceMap": "125:87:16:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;125:87:16;;;;;;;",
+  "deployedSourceMap": "125:87:16:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;125:87:16;;;;;;;;;;;;;;;;;;;154:55;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;154:55:16;-1:-1:-1;;;;;154:55:16;;:::i;:::-;;;;-1:-1:-1;;;;;154:55:16;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;154:55:16;;:::o",
+  "source": "pragma solidity 0.6.2;\n\nimport \"./OwnableDelegateProxy.sol\";\n\n/**\n* @title ProxyRegistry\n* @dev OpenSea compliant feature\n*/\ncontract ProxyRegistry {\n    mapping(address => OwnableDelegateProxy) public proxies;\n}\n",
+  "sourcePath": "/Users/joachimlebrun/IdeaProjects/ERC721/contracts/ProxyRegistry.sol",
+  "ast": {
+    "absolutePath": "/Users/joachimlebrun/IdeaProjects/ERC721/contracts/ProxyRegistry.sol",
+    "exportedSymbols": {
+      "ProxyRegistry": [
+        2269
+      ]
+    },
+    "id": 2270,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2263,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:22:16"
+      },
+      {
+        "absolutePath": "/Users/joachimlebrun/IdeaProjects/ERC721/contracts/OwnableDelegateProxy.sol",
+        "file": "./OwnableDelegateProxy.sol",
+        "id": 2264,
+        "nodeType": "ImportDirective",
+        "scope": 2270,
+        "sourceUnit": 2262,
+        "src": "24:36:16",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title ProxyRegistry\n@dev OpenSea compliant feature",
+        "fullyImplemented": true,
+        "id": 2269,
+        "linearizedBaseContracts": [
+          2269
+        ],
+        "name": "ProxyRegistry",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "c4552791",
+            "id": 2268,
+            "name": "proxies",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 2269,
+            "src": "154:55:16",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2261_$",
+              "typeString": "mapping(address => contract OwnableDelegateProxy)"
+            },
+            "typeName": {
+              "id": 2267,
+              "keyType": {
+                "id": 2265,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "162:7:16",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "154:40:16",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2261_$",
+                "typeString": "mapping(address => contract OwnableDelegateProxy)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 2266,
+                "name": "OwnableDelegateProxy",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 2261,
+                "src": "173:20:16",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_OwnableDelegateProxy_$2261",
+                  "typeString": "contract OwnableDelegateProxy"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2270,
+        "src": "125:87:16"
+      }
+    ],
+    "src": "0:213:16"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/joachimlebrun/IdeaProjects/ERC721/contracts/ProxyRegistry.sol",
+    "exportedSymbols": {
+      "ProxyRegistry": [
+        2269
+      ]
+    },
+    "id": 2270,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2263,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:22:16"
+      },
+      {
+        "absolutePath": "/Users/joachimlebrun/IdeaProjects/ERC721/contracts/OwnableDelegateProxy.sol",
+        "file": "./OwnableDelegateProxy.sol",
+        "id": 2264,
+        "nodeType": "ImportDirective",
+        "scope": 2270,
+        "sourceUnit": 2262,
+        "src": "24:36:16",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title ProxyRegistry\n@dev OpenSea compliant feature",
+        "fullyImplemented": true,
+        "id": 2269,
+        "linearizedBaseContracts": [
+          2269
+        ],
+        "name": "ProxyRegistry",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "functionSelector": "c4552791",
+            "id": 2268,
+            "name": "proxies",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 2269,
+            "src": "154:55:16",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2261_$",
+              "typeString": "mapping(address => contract OwnableDelegateProxy)"
+            },
+            "typeName": {
+              "id": 2267,
+              "keyType": {
+                "id": 2265,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "162:7:16",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "154:40:16",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2261_$",
+                "typeString": "mapping(address => contract OwnableDelegateProxy)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 2266,
+                "name": "OwnableDelegateProxy",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 2261,
+                "src": "173:20:16",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_OwnableDelegateProxy_$2261",
+                  "typeString": "contract OwnableDelegateProxy"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 2270,
+        "src": "125:87:16"
+      }
+    ],
+    "src": "0:213:16"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.0",
+  "updatedAt": "2020-10-15T20:40:47.730Z",
+  "devdoc": {
+    "details": "OpenSea compliant feature",
+    "methods": {},
+    "title": "ProxyRegistry"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

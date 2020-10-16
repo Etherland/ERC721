@@ -14,7 +14,7 @@
     "index.d.ts"
   ],
   "scripts": {
-    "build": "truffle compile && truffle-flattener contracts/FieldCoin.sol > build/FieldCoin.sol && truffle-flattener contracts/ProxyRegistry.sol > build/ProxyRegistry.sol",
+    "build": "truffle compile && truffle-flattener contracts/Etherland.sol > build/Etherland.sol && truffle-flattener contracts/ProxyRegistry.sol > build/ProxyRegistry.sol",
     "coverage": "truffle run coverage",
     "test": "(ganache-cli 2>&1 > /dev/null &) && CI=true truffle test && kill $(ps -ef | grep ganache | grep -v grep | awk '{print $2}')",
     "lint:js": "eslint \"test/*.js\"",
@@ -34,6 +34,7 @@
   "homepage": "https://github.com/Etherland/ERC721#README",
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
+    "@truffle/hdwallet-provider": "^1.1.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "node-fetch": "^2.6.0",

@@ -2,7 +2,6 @@ node_modules
 coverage
 coverageEnv
 coverage.json
-build
 
 # IDEs
 .idea/
@@ -13,4 +12,6 @@ package-lock.json
 gas-report
 /gasReporterOutput.json
 /ERC721.iml
-/migrations/
+
+#env
+.env

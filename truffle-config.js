@@ -1,3 +1,9 @@
+// withadmins VERSION
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+const MNEMONIC = '';
+const INFURA_KEY = '';
+
 const solcStable = {
   version: '0.6.2',
   settings: {
@@ -8,12 +14,19 @@ const solcStable = {
   },
 };
 
+const needsInfura = process.env.npm_config_argv && (process.env.npm_config_argv.includes('rinkeby') || process.env.npm_config_argv.includes('live'));
+
+if (needsInfura && !(MNEMONIC && INFURA_KEY)) {
+  console.error('Please set a mnemonic and infura key.');
+  process.exit(0);
+}
+
 module.exports = {
   networks: {
     development: {
       host: 'localhost',
       port: 8545,
-      network_id: '*', // eslint-disable-line camelcase
+      network_id: '*', // Match any network id
     },
     coverage: {
       host: 'localhost',
@@ -22,14 +35,30 @@ module.exports = {
       gas: 0xfffffffffff,
       gasPrice: 0x01,
     },
-  },
-
-  compilers: {
-    solc: solcStable,
+    rinkeby: {
+      provider: () => {
+        return new HDWalletProvider(MNEMONIC, `https://rinkeby.infura.io/v3/${INFURA_KEY}`);
+      },
+      network_id: '*',
+      networkCheckTimeout: 10000000,
+    },
+    live: {
+      network_id: 1,
+      provider: () => {
+        return new HDWalletProvider(MNEMONIC, `https://mainnet.infura.io/v3/${INFURA_KEY}`);
+      },
+      gas: 4000000,
+      gasPrice: 5000000000,
+    },
   },
   mocha: {
     reporter: 'eth-gas-reporter',
-    reporterOptions: { outputFile: './gas-report' }, // See options below
+    reporterOptions: {
+      outputFile: './gas-report',
+    },
   },
   plugins: ['solidity-coverage'],
+  compilers: {
+    solc: solcStable,
+  },
 };

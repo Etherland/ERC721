@@ -1,14 +1,13 @@
 pragma solidity 0.6.2;
 
-import "./Ownable.sol";
-
+import "./Administrable.sol";
 /**
  * @title TokensMetadatas
  * @dev setMetadatas
  * @dev getMetadatas
  * @dev removeMetadatas
  */
-contract TokensMetadatas is Ownable {
+contract TokensMetadatas is Administrable {
     // Mapping from token ID to token metadatas
     mapping(uint256 => string) private _tokensMetadatas;
 
