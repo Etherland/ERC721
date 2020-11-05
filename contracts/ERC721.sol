@@ -5,7 +5,7 @@ import "./Interfaces/IERC721.sol";
 import "./Interfaces/IERC721Receiver.sol";
 import "./Libraries/SafeMath.sol";
 import "./Libraries/Address.sol";
-import "./Libraries/Counters.sol";
+// import "./Libraries/Counters.sol";
 
 /**
 * @title ERC721 Non-Fungible Token Standard basic implementation
@@ -15,7 +15,7 @@ import "./Libraries/Counters.sol";
 contract ERC721 is ERC165, IERC721 {
     using SafeMath for uint256;
     using Address for address;
-    using Counters for Counters.Counter;
+    // using Counters for Counters.Counter;
 
     // // Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
     // // which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`

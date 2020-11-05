@@ -55,7 +55,7 @@ contract ERC721Full is ERC721, IERC721Full {
     /**
     * @dev Constructor function
     */
-    constructor (string memory name, string memory symbol) public {
+    function init (string memory name, string memory symbol) internal {
         _name = name;
         _symbol = symbol;
 

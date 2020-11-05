@@ -7,19 +7,19 @@ pragma solidity 0.6.2;
 * @dev source : openzeppelin-solidity/contracts/ownership/Ownable.sol
 */
 contract Ownable {
-    // address private _owner;
+    address private _owner;
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
-    /**
-    * @dev The Ownable constructor sets the original `owner` of the contract to the sender
-    * account.
-    */
-    constructor () internal {
-        // default deployment owner : CEO - Etherland ltd
-        _owner = address(msg.sender);
-        emit OwnershipTransferred(address(0), _owner);
-    }
+    // /**
+    // * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+    // * account.
+    // */
+    // constructor () internal {
+    //     // default deployment owner : CEO - Etherland ltd
+    //     _owner = address(msg.sender);
+    //     emit OwnershipTransferred(address(0), _owner);
+    // }
 
     /**
     * @return the address of the owner.

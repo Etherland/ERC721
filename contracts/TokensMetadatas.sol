@@ -9,7 +9,7 @@ import "./Administrable.sol";
  */
 contract TokensMetadatas is Administrable {
     // // Mapping from token ID to token metadatas
-    // mapping(uint256 => string) private _tokensMetadatas;
+    mapping(uint256 => string) private _tokensMetadatas;
 
     function setMetadatas(uint256 _tokenId, string memory _metadatas) public onlyOwner {
         _tokensMetadatas[_tokenId] = _metadatas;

@@ -32,9 +32,12 @@
     "url": "https://github.com/Etherland/ERC721/issues"
   },
   "homepage": "https://github.com/Etherland/ERC721#README",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.1.0",
+    "web3": "^1.2.8"
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
-    "@truffle/hdwallet-provider": "^1.1.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "node-fetch": "^2.6.0",
@@ -55,8 +58,7 @@
     "solidity-coverage": "^0.7.5",
     "solidity-docgen": "^0.5.3",
     "truffle": "^5.1.28",
-    "truffle-flattener": "^1.4.4",
-    "web3": "^1.2.8"
+    "truffle-flattener": "^1.4.4"
   },
   "husky": {
     "hooks": {

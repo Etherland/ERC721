@@ -34,6 +34,3 @@ contract Proxy {
         }
     }
 }
-
-
-// logic test code : 0x2194bA5b3C2cAdc361C0D88437EAa9f22B7B73dB (rinkeby)

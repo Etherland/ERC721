@@ -17,9 +17,207 @@ interface IERC165 {
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
 }
 
+// File: contracts/Libraries/SafeMath.sol
+
+pragma solidity 0.6.2;
+
+/**
+* @title SafeMath
+* @dev Unsigned math operations with safety checks that revert on error
+* @dev source : openzeppelin-solidity/contracts/math/SafeMath.sol
+*/
+library SafeMath {
+    /**
+    * @dev Multiplies two unsigned integers, reverts on overflow.
+    */
+    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
+        // benefit is lost if 'b' is also tested.
+        // See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522
+        if (a == 0) {
+            return 0;
+        }
+
+        uint256 c = a * b;
+        require(c / a == b, "error");
+
+        return c;
+    }
+
+    /**
+    * @dev Integer division of two unsigned integers truncating the quotient, reverts on division by zero.
+    */
+    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        // Solidity only automatically asserts when dividing by 0
+        require(b > 0, "cannot divide by 0 or negative");
+        uint256 c = a / b;
+        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
+
+        return c;
+    }
+
+    /**
+    * @dev Subtracts two unsigned integers, reverts on overflow (i.e. if subtrahend is greater than minuend).
+    */
+    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+        require(b <= a, "result cannot be lower than 0");
+        uint256 c = a - b;
+
+        return c;
+    }
+
+    /**
+    * @dev Adds two unsigned integers, reverts on overflow.
+    */
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        require(c >= a, "both numbers have to be positive");
+
+        return c;
+    }
+
+    /**
+    * @dev Divides two unsigned integers and returns the remainder (unsigned integer modulo),
+    * reverts when dividing by zero.
+    */
+    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
+        require(b != 0, "cannot divide by 0");
+        return a % b;
+    }
+}
+
+// File: contracts/Libraries/Counters.sol
+
+pragma solidity 0.6.2;
+
+
+
+/**
+* @title Counters
+* @author Matt Condon (@shrugs)
+* @dev Provides counters that can only be incremented or decremented by one. This can be used e.g. to track the number
+* of elements in a mapping, issuing ERC721 ids, or counting request ids
+*
+* Include with `using Counters for Counters.Counter;`
+* Since it is not possible to overflow a 256 bit integer with increments of one, `increment` can skip the SafeMath
+* overflow check, thereby saving gas. This does assume however correct usage, in that the underlying `_value` is never
+* directly accessed.
+* @dev source : openzeppelin-solidity/contracts/drafts/Counters.sol
+*/
+library Counters {
+    using SafeMath for uint256;
+
+    struct Counter {
+        // This variable should never be directly accessed by users of the library: interactions must be restricted to
+        // the library's function. As of Solidity v0.5.2, this cannot be enforced, though there is a proposal to add
+        // this feature: see https://github.com/ethereum/solidity/issues/4637
+        uint256 _value; // default: 0
+    }
+
+    function current(Counter storage counter) internal view returns (uint256) {
+        return counter._value;
+    }
+
+    function increment(Counter storage counter) internal {
+        counter._value += 1;
+    }
+
+    function decrement(Counter storage counter) internal {
+        counter._value = counter._value.sub(1);
+    }
+}
+
+// File: contracts/Storage.sol
+
+pragma solidity 0.6.2;
+
+    
+contract Storage {
+    using Counters for Counters.Counter;
+
+    // Token name
+    string internal _name;
+    // Token symbol
+    string internal _symbol;
+    // Token base uri
+    string internal _baseTokenURI;
+
+    bytes4 internal constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
+    // Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
+    // which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`
+    bytes4 internal constant _ERC721_RECEIVED = 0x150b7a02;
+    bytes4 internal constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
+    /*
+    * 0x780e9d63 ===
+    *     bytes4(keccak256('totalSupply()')) ^
+    *     bytes4(keccak256('tokenOfOwnerByIndex(address,uint256)')) ^
+    *     bytes4(keccak256('tokenByIndex(uint256)'))
+    */
+    bytes4 internal constant _INTERFACE_ID_ERC721_ENUMERABLE = 0x780e9d63;
+    /*
+    * 0x5b5e139f ===
+    *     bytes4(keccak256('name()')) ^
+    *     bytes4(keccak256('symbol()')) ^
+    *     bytes4(keccak256('tokenURI(uint256)'))
+    */
+    bytes4 internal constant _INTERFACE_ID_ERC721_METADATA = 0x5b5e139f;
+    
+    // OpenSea proxy registry
+    address public proxyRegistryAddress;
+
+    // token id tracker
+    uint256 internal _currentTokenId = 0;
+    
+    // Array with all token ids, used for enumeration
+    uint256[] internal _allTokens;
+
+    // mapping of interface id to whether or not it's supported    
+    mapping(bytes4 => bool) internal _supportedInterfaces;
+
+    // Mapping from token ID to owner
+    mapping (uint256 => address) internal _tokenOwner;
+
+    // Mapping from token ID to approved address
+    mapping (uint256 => address) internal _tokenApprovals;
+
+    // Mapping from owner to number of owned token
+    mapping (address => Counters.Counter) internal _ownedTokensCount;
+
+    // Mapping from owner to operator approvals
+    mapping (address => mapping (address => bool)) internal _operatorApprovals;
+
+    // Optional mapping for token URIs
+    mapping(uint256 => string) internal _tokenURIs;
+
+    // Mapping from owner to list of owned token IDs
+    mapping(address => uint256[]) internal _ownedTokens;
+
+    // Mapping from token ID to index of the owner tokens list
+    mapping(uint256 => uint256) internal _ownedTokensIndex;
+
+    // Mapping from token id to position in the allTokens array
+    mapping(uint256 => uint256) internal _allTokensIndex;
+
+    
+    /**
+    * @dev STORAGES STILL LOCATED IN RESPECTIVE FILES
+    */
+    /* Ownable.sol
+        address internal _owner;
+    */
+    /* Administrable.sol 
+        mapping(address => int16) internal admins;    
+    */
+    /* TokenMetadatas.sol 
+        mapping(uint256 => string) internal _tokensMetadatas;    
+    */
+    
+}
+
 // File: contracts/ERC165.sol
 
 pragma solidity 0.6.2;
+
 
 
 /**
@@ -28,17 +226,17 @@ pragma solidity 0.6.2;
 * @dev Implements ERC165 using a lookup table.
 * @dev source : openzeppelin-solidity/contracts/introspection/ERC165.sol
 */
-contract ERC165 is IERC165 {
-    bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
+contract ERC165 is IERC165, Storage {
+    // bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
     /*
     * 0x01ffc9a7 ===
     *     bytes4(keccak256('supportsInterface(bytes4)'))
     */
 
-    /**
-    * @dev a mapping of interface id to whether or not it's supported
-    */
-    mapping(bytes4 => bool) private _supportedInterfaces;
+    // /**
+    // * @dev a mapping of interface id to whether or not it's supported
+    // */
+    // mapping(bytes4 => bool) private _supportedInterfaces;
 
     /**
     * @dev A contract implementing SupportsInterfaceWithLookup
@@ -123,75 +321,6 @@ interface IERC721Receiver {
     external returns (bytes4);
 }
 
-// File: contracts/Libraries/SafeMath.sol
-
-pragma solidity 0.6.2;
-
-/**
-* @title SafeMath
-* @dev Unsigned math operations with safety checks that revert on error
-* @dev source : openzeppelin-solidity/contracts/math/SafeMath.sol
-*/
-library SafeMath {
-    /**
-    * @dev Multiplies two unsigned integers, reverts on overflow.
-    */
-    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
-        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
-        // benefit is lost if 'b' is also tested.
-        // See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522
-        if (a == 0) {
-            return 0;
-        }
-
-        uint256 c = a * b;
-        require(c / a == b, "error");
-
-        return c;
-    }
-
-    /**
-    * @dev Integer division of two unsigned integers truncating the quotient, reverts on division by zero.
-    */
-    function div(uint256 a, uint256 b) internal pure returns (uint256) {
-        // Solidity only automatically asserts when dividing by 0
-        require(b > 0, "cannot divide by 0 or negative");
-        uint256 c = a / b;
-        // assert(a == b * c + a % b); // There is no case in which this doesn't hold
-
-        return c;
-    }
-
-    /**
-    * @dev Subtracts two unsigned integers, reverts on overflow (i.e. if subtrahend is greater than minuend).
-    */
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-        require(b <= a, "result cannot be lower than 0");
-        uint256 c = a - b;
-
-        return c;
-    }
-
-    /**
-    * @dev Adds two unsigned integers, reverts on overflow.
-    */
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
-        require(c >= a, "both numbers have to be positive");
-
-        return c;
-    }
-
-    /**
-    * @dev Divides two unsigned integers and returns the remainder (unsigned integer modulo),
-    * reverts when dividing by zero.
-    */
-    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
-        require(b != 0, "cannot divide by 0");
-        return a % b;
-    }
-}
-
 // File: contracts/Libraries/Address.sol
 
 pragma solidity 0.6.2;
@@ -222,47 +351,6 @@ library Address {
     }
 }
 
-// File: contracts/Libraries/Counters.sol
-
-pragma solidity 0.6.2;
-
-
-
-/**
-* @title Counters
-* @author Matt Condon (@shrugs)
-* @dev Provides counters that can only be incremented or decremented by one. This can be used e.g. to track the number
-* of elements in a mapping, issuing ERC721 ids, or counting request ids
-*
-* Include with `using Counters for Counters.Counter;`
-* Since it is not possible to overflow a 256 bit integer with increments of one, `increment` can skip the SafeMath
-* overflow check, thereby saving gas. This does assume however correct usage, in that the underlying `_value` is never
-* directly accessed.
-* @dev source : openzeppelin-solidity/contracts/drafts/Counters.sol
-*/
-library Counters {
-    using SafeMath for uint256;
-
-    struct Counter {
-        // This variable should never be directly accessed by users of the library: interactions must be restricted to
-        // the library's function. As of Solidity v0.5.2, this cannot be enforced, though there is a proposal to add
-        // this feature: see https://github.com/ethereum/solidity/issues/4637
-        uint256 _value; // default: 0
-    }
-
-    function current(Counter storage counter) internal view returns (uint256) {
-        return counter._value;
-    }
-
-    function increment(Counter storage counter) internal {
-        counter._value += 1;
-    }
-
-    function decrement(Counter storage counter) internal {
-        counter._value = counter._value.sub(1);
-    }
-}
-
 // File: contracts/ERC721.sol
 
 pragma solidity 0.6.2;
@@ -271,7 +359,7 @@ pragma solidity 0.6.2;
 
 
 
-
+// import "./Libraries/Counters.sol";
 
 /**
 * @title ERC721 Non-Fungible Token Standard basic implementation
@@ -281,25 +369,25 @@ pragma solidity 0.6.2;
 contract ERC721 is ERC165, IERC721 {
     using SafeMath for uint256;
     using Address for address;
-    using Counters for Counters.Counter;
+    // using Counters for Counters.Counter;
 
-    // Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
-    // which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`
-    bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
+    // // Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
+    // // which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`
+    // bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
 
-    // Mapping from token ID to owner
-    mapping (uint256 => address) private _tokenOwner;
+    // // Mapping from token ID to owner
+    // mapping (uint256 => address) private _tokenOwner;
 
-    // Mapping from token ID to approved address
-    mapping (uint256 => address) private _tokenApprovals;
+    // // Mapping from token ID to approved address
+    // mapping (uint256 => address) private _tokenApprovals;
 
-    // Mapping from owner to number of owned token
-    mapping (address => Counters.Counter) private _ownedTokensCount;
+    // // Mapping from owner to number of owned token
+    // mapping (address => Counters.Counter) private _ownedTokensCount;
 
-    // Mapping from owner to operator approvals
-    mapping (address => mapping (address => bool)) private _operatorApprovals;
+    // // Mapping from owner to operator approvals
+    // mapping (address => mapping (address => bool)) private _operatorApprovals;
 
-    bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
+    // bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
     /*
     * 0x80ac58cd ===
     *     bytes4(keccak256('balanceOf(address)')) ^
@@ -600,50 +688,51 @@ pragma solidity 0.6.2;
 * @dev source : openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol
 */
 contract ERC721Full is ERC721, IERC721Full {
-
-    // Token name
-    string private _name;
-
-    // Token symbol
-    string private _symbol;
-
-    // Optional mapping for token URIs
-    mapping(uint256 => string) private _tokenURIs;
-
     using SafeMath for uint256;
-    // Mapping from owner to list of owned token IDs
-    mapping(address => uint256[]) private _ownedTokens;
 
-    // Mapping from token ID to index of the owner tokens list
-    mapping(uint256 => uint256) private _ownedTokensIndex;
+    // // Token name
+    // string private _name;
 
-    // Array with all token ids, used for enumeration
-    uint256[] private _allTokens;
+    // // Token symbol
+    // string private _symbol;
 
-    // Mapping from token id to position in the allTokens array
-    mapping(uint256 => uint256) private _allTokensIndex;
+    // // Optional mapping for token URIs
+    // mapping(uint256 => string) private _tokenURIs;
 
-    bytes4 private constant _INTERFACE_ID_ERC721_ENUMERABLE = 0x780e9d63;
-    /*
-    * 0x780e9d63 ===
-    *     bytes4(keccak256('totalSupply()')) ^
-    *     bytes4(keccak256('tokenOfOwnerByIndex(address,uint256)')) ^
-    *     bytes4(keccak256('tokenByIndex(uint256)'))
-    */
+    // using SafeMath for uint256;
+    // // Mapping from owner to list of owned token IDs
+    // mapping(address => uint256[]) private _ownedTokens;
 
-    bytes4 private constant _INTERFACE_ID_ERC721_METADATA = 0x5b5e139f;
-    /*
-    * 0x5b5e139f ===
-    *     bytes4(keccak256('name()')) ^
-    *     bytes4(keccak256('symbol()')) ^
-    *     bytes4(keccak256('tokenURI(uint256)'))
-    */
+    // // Mapping from token ID to index of the owner tokens list
+    // mapping(uint256 => uint256) private _ownedTokensIndex;
+
+    // // Array with all token ids, used for enumeration
+    // uint256[] private _allTokens;
+
+    // // Mapping from token id to position in the allTokens array
+    // mapping(uint256 => uint256) private _allTokensIndex;
+
+    // bytes4 private constant _INTERFACE_ID_ERC721_ENUMERABLE = 0x780e9d63;
+    // /*
+    // * 0x780e9d63 ===
+    // *     bytes4(keccak256('totalSupply()')) ^
+    // *     bytes4(keccak256('tokenOfOwnerByIndex(address,uint256)')) ^
+    // *     bytes4(keccak256('tokenByIndex(uint256)'))
+    // */
+
+    // bytes4 private constant _INTERFACE_ID_ERC721_METADATA = 0x5b5e139f;
+    // /*
+    // * 0x5b5e139f ===
+    // *     bytes4(keccak256('name()')) ^
+    // *     bytes4(keccak256('symbol()')) ^
+    // *     bytes4(keccak256('tokenURI(uint256)'))
+    // */
 
 
     /**
     * @dev Constructor function
     */
-    constructor (string memory name, string memory symbol) public {
+    function init (string memory name, string memory symbol) internal {
         _name = name;
         _symbol = symbol;
 
@@ -854,15 +943,15 @@ contract Ownable {
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
-    /**
-    * @dev The Ownable constructor sets the original `owner` of the contract to the sender
-    * account.
-    */
-    constructor () internal {
-        // default deployment owner : CEO - Etherland ltd
-        _owner = address(msg.sender);
-        emit OwnershipTransferred(address(0), _owner);
-    }
+    // /**
+    // * @dev The Ownable constructor sets the original `owner` of the contract to the sender
+    // * account.
+    // */
+    // constructor () internal {
+    //     // default deployment owner : CEO - Etherland ltd
+    //     _owner = address(msg.sender);
+    //     emit OwnershipTransferred(address(0), _owner);
+    // }
 
     /**
     * @return the address of the owner.
@@ -929,12 +1018,12 @@ pragma solidity 0.6.2;
  *      - access to admin web interfaces
 */
 contract Administrable is Ownable {
-    /**
-    * @dev ADMINS STORAGE 
-    * @dev rights are integer(int16) defined as follow :
-    *       1 : address can only mint tokens 
-    *       2 : address can mint AND burn tokens
-    */
+    // /**
+    // * @dev ADMINS STORAGE 
+    // * @dev rights are integer(int16) defined as follow :
+    // *       1 : address can only mint tokens 
+    // *       2 : address can mint AND burn tokens
+    // */
     mapping(address => int16) private admins;
 
     /***** EVENTS *****/
@@ -1169,17 +1258,18 @@ pragma solidity 0.6.2;
 
 /**
 * @title TradeableERC721Token
-* TradeableERC721Token - ERC721 contract that whitelists a trading address, and has minting functionality.
+* TradeableERC721Token - ERC721 contract that whitelists a trading address, and has minting functionalities.
 * @notice an external 'burn' function restricted to owner as been added
 */
 contract TradeableERC721Token is ERC721Full, Administrable {
     using Strings for string;
     using SafeMath for uint256;
 
-    address public proxyRegistryAddress;
-    uint256 private _currentTokenId = 0;
+    // address public proxyRegistryAddress;
+    // uint256 private _currentTokenId = 0;
 
-    constructor(string memory _name, string memory _symbol, address _proxyRegistryAddress) public ERC721Full(_name, _symbol) {
+    function init(string memory _name, string memory _symbol, address _proxyRegistryAddress) internal {
+        ERC721Full.init(_name, _symbol);
         proxyRegistryAddress = _proxyRegistryAddress;
     }
 
@@ -1260,7 +1350,7 @@ pragma solidity 0.6.2;
  * @dev removeMetadatas
  */
 contract TokensMetadatas is Administrable {
-    // Mapping from token ID to token metadatas
+    // // Mapping from token ID to token metadatas
     mapping(uint256 => string) private _tokensMetadatas;
 
     function setMetadatas(uint256 _tokenId, string memory _metadatas) public onlyOwner {
@@ -1277,12 +1367,37 @@ contract TokensMetadatas is Administrable {
     }
 }
 
+// File: contracts/ERC1822/Proxiable.sol
+
+pragma solidity 0.6.2;
+
+/**
+* @title Proxiable
+* @dev Etherland - EIP-1822 Proxiable contract implementation
+* @dev https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md
+*/
+contract Proxiable {
+    // Code position in storage is keccak256("PROXIABLE") = "0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7"
+
+    function updateCodeAddress(address newAddress) internal {
+        require(
+            bytes32(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7) == Proxiable(newAddress).proxiableUUID(),
+            "Not compatible"
+        );
+        assembly { // solium-disable-line
+            sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, newAddress)
+        }
+    }
+    function proxiableUUID() public pure returns (bytes32) {
+        return 0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7;
+    }
+}
+
 // File: contracts/Etherland.sol
 
 // SPDX-License-Identifier: UNLICENSED
 /**
- * @dev Credits to
- * Mathieu Lecoq
+ * @author Mathieu Lecoq
  * september 3rd 2020 
  *
  * @dev Property
@@ -1294,42 +1409,79 @@ pragma solidity 0.6.2;
 
 
 
+
 /**
 * @title Etherland NFT Assets
 */
-contract Etherland is TradeableERC721Token, TokensMetadatas {
-    string private _baseTokenURI;
+contract Etherland is TradeableERC721Token, TokensMetadatas, Proxiable {
+    // string private _baseTokenURI;
+    /**
+    * @dev initialized state MUST remain set to false on Implementation Contract 
+    */
+    bool public initialized = false;
 
     /**
     * @dev event emitting when the `_baseTokenUri` is updated by owner
     */
     event BaseTokenUriUpdated(string newUri);
 
-    constructor(
+    /**
+    * @dev Logic code implementation contact constructor
+    * @dev MUST be called by deployer only if contract has not been initialized before
+    */
+    function init(
         string memory _name,
         string memory _symbol,
         address _proxyRegistryAddress,
         string memory baseURI,
         address _owner
-    ) public TradeableERC721Token(_name, _symbol, _proxyRegistryAddress) {
-        _baseTokenURI = baseURI;
-        _transferOwnership(_owner);
+    ) public {
+        // logic code contract can be initialized only once
+        if (initialized != true) {
+            // MUST set Proxy contract state
+            initialized = true;
+
+            TradeableERC721Token.init(_name, _symbol, _proxyRegistryAddress);
+
+            _baseTokenURI = baseURI;
+            _transferOwnership(_owner);
+        }
     }
 
+    /**
+    * @dev Retrieve all NFTs base token uri 
+    */
     function baseTokenURI() public view returns (string memory) {
         return _baseTokenURI;
     }
 
+    /**
+    * @dev Set the base token uri for all NFTs
+    */
     function setBaseTokenURI(string memory uri) public onlyOwner {
         _baseTokenURI = uri;
         emit BaseTokenUriUpdated(uri);
     }
 
+    /**
+    * @dev Retrieve the uri of a specific token 
+    * @param _tokenId the id of the token to retrieve the uri of
+    * @return computed uri string pointing to a specific _tokenId
+    */
     function tokenURI(uint256 _tokenId) external view returns (string memory) {
         return Strings.strConcat(
             baseTokenURI(),
             Strings.uint2str(_tokenId)
         );
+    }
+
+    /**
+    * @dev EIP-1822 feature
+    * @dev Realize an update of the Etherland logic code 
+    * @dev calls the proxy contract to update stored logic code contract address at keccak256("PROXIABLE")
+    */
+    function updateCode(address newCode) public onlyOwner {
+        updateCodeAddress(newCode);
     }
 
 }

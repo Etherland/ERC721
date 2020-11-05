@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 /**
- * @dev Credits to
- * Mathieu Lecoq
+ * @author Mathieu Lecoq
  * september 3rd 2020 
  *
  * @dev Property
@@ -34,17 +33,19 @@ contract Etherland is TradeableERC721Token, TokensMetadatas, Proxiable {
     * @dev Logic code implementation contact constructor
     * @dev MUST be called by deployer only if contract has not been initialized before
     */
-    function intializer(
+    function init(
         string memory _name,
         string memory _symbol,
         address _proxyRegistryAddress,
         string memory baseURI,
         address _owner
-    ) public TradeableERC721Token(_name, _symbol, _proxyRegistryAddress) {
+    ) public {
         // logic code contract can be initialized only once
         if (initialized != true) {
             // MUST set Proxy contract state
             initialized = true;
+
+            TradeableERC721Token.init(_name, _symbol, _proxyRegistryAddress);
 
             _baseTokenURI = baseURI;
             _transferOwnership(_owner);

@@ -15,7 +15,7 @@ contract Administrable is Ownable {
     // *       1 : address can only mint tokens 
     // *       2 : address can mint AND burn tokens
     // */
-    // mapping(address => int16) private admins;
+    mapping(address => int16) private admins;
 
     /***** EVENTS *****/
     event AdminRightsGranted(address indexed newAdmin, int16 adminRights);
