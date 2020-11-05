@@ -1,8 +1,8 @@
 // withadmins VERSION
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
-const MNEMONIC = 'faculty receive force iron tribe pretty wrap legend sea shop divide name';
-const INFURA_KEY = '3537ff82002e4b93bf5f0ec26800f7bd';
+const MNEMONIC = '';
+const INFURA_KEY = '';
 
 const solcStable = {
   version: '0.6.2',
