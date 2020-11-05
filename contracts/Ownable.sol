@@ -7,7 +7,7 @@ pragma solidity 0.6.2;
 * @dev source : openzeppelin-solidity/contracts/ownership/Ownable.sol
 */
 contract Ownable {
-    address private _owner;
+    // address private _owner;
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 

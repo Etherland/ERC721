@@ -17,23 +17,23 @@ contract ERC721 is ERC165, IERC721 {
     using Address for address;
     using Counters for Counters.Counter;
 
-    // Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
-    // which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`
-    bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
+    // // Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
+    // // which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`
+    // bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
 
-    // Mapping from token ID to owner
-    mapping (uint256 => address) private _tokenOwner;
+    // // Mapping from token ID to owner
+    // mapping (uint256 => address) private _tokenOwner;
 
-    // Mapping from token ID to approved address
-    mapping (uint256 => address) private _tokenApprovals;
+    // // Mapping from token ID to approved address
+    // mapping (uint256 => address) private _tokenApprovals;
 
-    // Mapping from owner to number of owned token
-    mapping (address => Counters.Counter) private _ownedTokensCount;
+    // // Mapping from owner to number of owned token
+    // mapping (address => Counters.Counter) private _ownedTokensCount;
 
-    // Mapping from owner to operator approvals
-    mapping (address => mapping (address => bool)) private _operatorApprovals;
+    // // Mapping from owner to operator approvals
+    // mapping (address => mapping (address => bool)) private _operatorApprovals;
 
-    bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
+    // bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
     /*
     * 0x80ac58cd ===
     *     bytes4(keccak256('balanceOf(address)')) ^

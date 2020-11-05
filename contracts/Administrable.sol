@@ -9,13 +9,13 @@ import "./Ownable.sol";
  *      - access to admin web interfaces
 */
 contract Administrable is Ownable {
-    /**
-    * @dev ADMINS STORAGE 
-    * @dev rights are integer(int16) defined as follow :
-    *       1 : address can only mint tokens 
-    *       2 : address can mint AND burn tokens
-    */
-    mapping(address => int16) private admins;
+    // /**
+    // * @dev ADMINS STORAGE 
+    // * @dev rights are integer(int16) defined as follow :
+    // *       1 : address can only mint tokens 
+    // *       2 : address can mint AND burn tokens
+    // */
+    // mapping(address => int16) private admins;
 
     /***** EVENTS *****/
     event AdminRightsGranted(address indexed newAdmin, int16 adminRights);

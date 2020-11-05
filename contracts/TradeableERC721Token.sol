@@ -14,8 +14,8 @@ contract TradeableERC721Token is ERC721Full, Administrable {
     using Strings for string;
     using SafeMath for uint256;
 
-    address public proxyRegistryAddress;
-    uint256 private _currentTokenId = 0;
+    // address public proxyRegistryAddress;
+    // uint256 private _currentTokenId = 0;
 
     constructor(string memory _name, string memory _symbol, address _proxyRegistryAddress) public ERC721Full(_name, _symbol) {
         proxyRegistryAddress = _proxyRegistryAddress;

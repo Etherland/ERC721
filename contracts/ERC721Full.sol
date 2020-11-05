@@ -11,44 +11,45 @@ import "./Interfaces/IERC721Full.sol";
 * @dev source : openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol
 */
 contract ERC721Full is ERC721, IERC721Full {
-
-    // Token name
-    string private _name;
-
-    // Token symbol
-    string private _symbol;
-
-    // Optional mapping for token URIs
-    mapping(uint256 => string) private _tokenURIs;
-
     using SafeMath for uint256;
-    // Mapping from owner to list of owned token IDs
-    mapping(address => uint256[]) private _ownedTokens;
 
-    // Mapping from token ID to index of the owner tokens list
-    mapping(uint256 => uint256) private _ownedTokensIndex;
+    // // Token name
+    // string private _name;
 
-    // Array with all token ids, used for enumeration
-    uint256[] private _allTokens;
+    // // Token symbol
+    // string private _symbol;
 
-    // Mapping from token id to position in the allTokens array
-    mapping(uint256 => uint256) private _allTokensIndex;
+    // // Optional mapping for token URIs
+    // mapping(uint256 => string) private _tokenURIs;
 
-    bytes4 private constant _INTERFACE_ID_ERC721_ENUMERABLE = 0x780e9d63;
-    /*
-    * 0x780e9d63 ===
-    *     bytes4(keccak256('totalSupply()')) ^
-    *     bytes4(keccak256('tokenOfOwnerByIndex(address,uint256)')) ^
-    *     bytes4(keccak256('tokenByIndex(uint256)'))
-    */
+    // using SafeMath for uint256;
+    // // Mapping from owner to list of owned token IDs
+    // mapping(address => uint256[]) private _ownedTokens;
 
-    bytes4 private constant _INTERFACE_ID_ERC721_METADATA = 0x5b5e139f;
-    /*
-    * 0x5b5e139f ===
-    *     bytes4(keccak256('name()')) ^
-    *     bytes4(keccak256('symbol()')) ^
-    *     bytes4(keccak256('tokenURI(uint256)'))
-    */
+    // // Mapping from token ID to index of the owner tokens list
+    // mapping(uint256 => uint256) private _ownedTokensIndex;
+
+    // // Array with all token ids, used for enumeration
+    // uint256[] private _allTokens;
+
+    // // Mapping from token id to position in the allTokens array
+    // mapping(uint256 => uint256) private _allTokensIndex;
+
+    // bytes4 private constant _INTERFACE_ID_ERC721_ENUMERABLE = 0x780e9d63;
+    // /*
+    // * 0x780e9d63 ===
+    // *     bytes4(keccak256('totalSupply()')) ^
+    // *     bytes4(keccak256('tokenOfOwnerByIndex(address,uint256)')) ^
+    // *     bytes4(keccak256('tokenByIndex(uint256)'))
+    // */
+
+    // bytes4 private constant _INTERFACE_ID_ERC721_METADATA = 0x5b5e139f;
+    // /*
+    // * 0x5b5e139f ===
+    // *     bytes4(keccak256('name()')) ^
+    // *     bytes4(keccak256('symbol()')) ^
+    // *     bytes4(keccak256('tokenURI(uint256)'))
+    // */
 
 
     /**
