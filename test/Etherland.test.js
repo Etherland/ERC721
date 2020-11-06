@@ -1,12 +1,17 @@
 require('chai').use(require('chai-as-promised')).should();
 const EVMRevert = require('./helpers/VMExceptionRevert');
 
+const Proxy = artifacts.require('../contracts/ERC1822/Proxy.sol');
 const Etherland = artifacts.require('../contracts/Etherland.sol');
 const ProxyRegistry = artifacts.require('../contracts/ProxyRegistry.sol');
 
-contract('Etherland', (accounts) => {
-  let etherland;
+contract('Proxy', (accounts) => {
   let proxyRegistry;
+  // implem
+  let code;
+  // proxy
+  let etherland;
+
   const owner = accounts[0];
   const user1 = accounts[1];
   const user2 = accounts[2];
@@ -17,7 +22,12 @@ contract('Etherland', (accounts) => {
 
   beforeEach(async () => {
     proxyRegistry = await ProxyRegistry.new({ from: owner });
-    etherland = await Etherland.new(tokenName, tokenSymbol, proxyRegistry.address, baseURI, owner, { from: user1 });
+    code = await Etherland.new({ from: user1 });
+    /**
+     * @todo FIX error `encodeABI is not a function`
+     */
+    const constructData = code.contract.methods.init(tokenName, tokenSymbol, proxyRegistry.address, baseURI, owner).encodeABI();
+    etherland = await Proxy.new(constructData, code.address, { from: owner });
   });
 
   it('checks if contract implements interfaces right', async () => {
