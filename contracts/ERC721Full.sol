@@ -19,11 +19,6 @@ contract ERC721Full is ERC721, IERC721Full {
     function init (string memory name, string memory symbol) internal {
         _name = name;
         _symbol = symbol;
-
-        // register the supported interfaces to conform to ERC721 via ERC165
-        _registerInterface(_INTERFACE_ID_ERC721_METADATA);
-        // register the supported interface to conform to ERC721Enumerable via ERC165
-        _registerInterface(_INTERFACE_ID_ERC721_ENUMERABLE);
     }
 
     /**

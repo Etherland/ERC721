@@ -45,6 +45,13 @@ contract Etherland is TradeableERC721Token, TokensMetadatas, Proxiable {
             TradeableERC721Token.init(_name, _symbol, _proxyRegistryAddress);
 
             _baseTokenURI = baseURI;
+
+            // register the supported interfaces to conform to ERC721 via ERC165
+            _registerInterface(_INTERFACE_ID_ERC165);
+            _registerInterface(_INTERFACE_ID_ERC721_METADATA);
+            _registerInterface(_INTERFACE_ID_ERC721_ENUMERABLE);
+            _registerInterface(_INTERFACE_ID_ERC721);
+
             _transferOwnership(_owner);
         }
     }

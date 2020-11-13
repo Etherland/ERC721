@@ -1,17 +1,14 @@
 const Etherland = artifacts.require('./Etherland.sol');
 const Proxy = artifacts.require('./ERC1822/Proxy.sol');
-// const ProxyRegistry = artifacts.require('../contracts/ProxyRegistry.sol');
 
 const Web3 = require('web3');
 
 const web3 = new Web3(Web3.givenProvider);
 
-// OpenSea proxies
-const proxies = {
-  // testnet
+// OepnSea proxies
+const osProxies = {
   'rinkeby-fork': '0xf57b2c51ded3a29e6891aba85459d600256cf317',
   rinkeby: '0xf57b2c51ded3a29e6891aba85459d600256cf317',
-  // mainnet
   live: '0xa5409ec958c83c3f309868babaca7c86dcb077c1',
 };
 const DEPLOY_ETHERLAND_ERC721 = true;
@@ -27,15 +24,7 @@ const owner = '0x21fAC178E0b0df2Db51A06d52B32DE4479a8b3F1';
  * @see readme
  */
 module.exports = async (deployer, network) => {
-  // const openSeaProxy = await (
-  //   network === 'soliditycoverage'
-  //   ? (async() => {
-  //     await deployer.deploy(ProxyRegistry);
-  //     return ProxyRegistry.address;
-  //   })()
-  //   : async() => proxies[network]
-  // );
-  const openSeaProxy = proxies[network];
+  const openSeaProxy = osProxies[network];
 
   if (DEPLOY_ETHERLAND_ERC721 && openSeaProxy) {
     // deploy Logic Code

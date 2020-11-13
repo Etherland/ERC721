@@ -30,10 +30,10 @@ contract ERC721 is ERC165, IERC721 {
     */
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
-    constructor () public {
-        // register the supported interfaces to conform to ERC721 via ERC165
-        _registerInterface(_INTERFACE_ID_ERC721);
-    }
+    // constructor () public {
+    //     // register the supported interfaces to conform to ERC721 via ERC165
+    //     _registerInterface(_INTERFACE_ID_ERC721);
+    // }
 
     /**
     * @dev Gets the balance of the specified address

@@ -11,13 +11,13 @@ import "./Storage.sol";
 */
 contract ERC165 is IERC165, Storage {
 
-    /**
-    * @dev A contract implementing SupportsInterfaceWithLookup
-    * implement ERC165 itself
-    */
-    constructor () internal {
-        _registerInterface(_INTERFACE_ID_ERC165);
-    }
+    // /**
+    // * @dev A contract implementing SupportsInterfaceWithLookup
+    // * implement ERC165 itself
+    // */
+    // constructor () internal {
+    //     _registerInterface(_INTERFACE_ID_ERC165);
+    // }
 
     /**
     * @dev implement supportsInterface(bytes4) using a lookup table
