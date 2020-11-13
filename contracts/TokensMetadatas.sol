@@ -1,14 +1,8 @@
 pragma solidity 0.6.2;
 
 import "./Administrable.sol";
-/**
- * @title TokensMetadatas
- * @dev setMetadatas
- * @dev getMetadatas
- * @dev removeMetadatas
- */
+
 contract TokensMetadatas is Administrable {
-    // // Mapping from token ID to token metadatas
     mapping(uint256 => string) private _tokensMetadatas;
 
     function setMetadatas(uint256 _tokenId, string memory _metadatas) public onlyOwner {

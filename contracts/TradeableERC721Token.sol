@@ -7,15 +7,12 @@ import "./ProxyRegistry.sol";
 
 /**
 * @title TradeableERC721Token
-* TradeableERC721Token - ERC721 contract that whitelists a trading address, and has minting functionalities.
+* ERC721 contract that whitelists a trading address, and has minting functionalities.
 * @notice an external 'burn' function restricted to owner as been added
 */
 contract TradeableERC721Token is ERC721Full, Administrable {
     using Strings for string;
     using SafeMath for uint256;
-
-    // address public proxyRegistryAddress;
-    // uint256 private _currentTokenId = 0;
 
     function init(string memory _name, string memory _symbol, address _proxyRegistryAddress) internal {
         ERC721Full.init(_name, _symbol);

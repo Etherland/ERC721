@@ -26,9 +26,9 @@ after having installed dependencies :
 #
 ### PACKAGES VERSION  
 ##### If any error occurs due to node or npm version, try to update version to : 
-- npm version to install to run this project : 5.6.0
+- npm : 5.6.0
 run ```npm install -g npm@5.6.0```
-- node version to install to run this project : 8.11.2
+- node : 8.11.2
 run ```nvm use 8.11.2```
 # 
 *Something went wrong ? support@proapps.fr* 

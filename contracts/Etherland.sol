@@ -18,7 +18,6 @@ import "./ERC1822/Proxiable.sol";
 * @title Etherland NFT Assets
 */
 contract Etherland is TradeableERC721Token, TokensMetadatas, Proxiable {
-    // string private _baseTokenURI;
     /**
     * @dev initialized state MUST remain set to false on Implementation Contract 
     */
@@ -40,9 +39,7 @@ contract Etherland is TradeableERC721Token, TokensMetadatas, Proxiable {
         string memory baseURI,
         address _owner
     ) public {
-        // logic code contract can be initialized only once
         if (initialized != true) {
-            // MUST set Proxy contract state
             initialized = true;
 
             TradeableERC721Token.init(_name, _symbol, _proxyRegistryAddress);

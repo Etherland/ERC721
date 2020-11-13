@@ -13,23 +13,9 @@ contract Storage {
     string internal _baseTokenURI;
 
     bytes4 internal constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
-    // Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
-    // which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`
     bytes4 internal constant _ERC721_RECEIVED = 0x150b7a02;
     bytes4 internal constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
-    /*
-    * 0x780e9d63 ===
-    *     bytes4(keccak256('totalSupply()')) ^
-    *     bytes4(keccak256('tokenOfOwnerByIndex(address,uint256)')) ^
-    *     bytes4(keccak256('tokenByIndex(uint256)'))
-    */
     bytes4 internal constant _INTERFACE_ID_ERC721_ENUMERABLE = 0x780e9d63;
-    /*
-    * 0x5b5e139f ===
-    *     bytes4(keccak256('name()')) ^
-    *     bytes4(keccak256('symbol()')) ^
-    *     bytes4(keccak256('tokenURI(uint256)'))
-    */
     bytes4 internal constant _INTERFACE_ID_ERC721_METADATA = 0x5b5e139f;
     
     // OpenSea proxy registry
@@ -68,18 +54,5 @@ contract Storage {
     // Mapping from token id to position in the allTokens array
     mapping(uint256 => uint256) internal _allTokensIndex;
 
-    
-    /**
-    * @dev STORAGES STILL LOCATED IN RESPECTIVE FILES
-    */
-    /* Ownable.sol
-        address internal _owner;
-    */
-    /* Administrable.sol 
-        mapping(address => int16) internal admins;    
-    */
-    /* TokenMetadatas.sol 
-        mapping(uint256 => string) internal _tokensMetadatas;    
-    */
     
 }

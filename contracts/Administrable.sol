@@ -6,22 +6,20 @@ import "./Ownable.sol";
  * @title Administrable
  * @dev Handle allowances for NFTs administration :
  *      - minting
+ *      - burning
  *      - access to admin web interfaces
+ * @dev ADMINS STORAGE 
+ * @dev rights are integer(int16) defined as follow :
+ *       1 : address can only mint tokens 
+ *       2 : address can mint AND burn tokens
 */
 contract Administrable is Ownable {
-    // /**
-    // * @dev ADMINS STORAGE 
-    // * @dev rights are integer(int16) defined as follow :
-    // *       1 : address can only mint tokens 
-    // *       2 : address can mint AND burn tokens
-    // */
+    
     mapping(address => int16) private admins;
 
-    /***** EVENTS *****/
     event AdminRightsGranted(address indexed newAdmin, int16 adminRights);
     event AdminRightsRevoked(address indexed noAdmin);
 
-    /***** GETTERS *****/
     /**
     * @dev know if an address has admin rights and its type of rights
     * @param _admin the address to find admin rights of
@@ -81,8 +79,6 @@ contract Administrable is Ownable {
         );
     }
 
-
-    /***** VERIFIERS *****/
     /**
     * @dev onlyMinter internal
     */
@@ -93,7 +89,6 @@ contract Administrable is Ownable {
         );
         _;
     }
-
 
     /**
     * @dev onlyBurner internal
@@ -111,8 +106,6 @@ contract Administrable is Ownable {
         _;
     }
 
-
-    /***** SETTERS *****/
     /**
     * @dev owner can grant admin access to allow any address to mint new tokens
     * @dev Restricted to CONTRACT OWNER ONLY

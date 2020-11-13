@@ -5,7 +5,6 @@ import "./Interfaces/IERC721.sol";
 import "./Interfaces/IERC721Receiver.sol";
 import "./Libraries/SafeMath.sol";
 import "./Libraries/Address.sol";
-// import "./Libraries/Counters.sol";
 
 /**
 * @title ERC721 Non-Fungible Token Standard basic implementation
@@ -15,37 +14,6 @@ import "./Libraries/Address.sol";
 contract ERC721 is ERC165, IERC721 {
     using SafeMath for uint256;
     using Address for address;
-    // using Counters for Counters.Counter;
-
-    // // Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
-    // // which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`
-    // bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
-
-    // // Mapping from token ID to owner
-    // mapping (uint256 => address) private _tokenOwner;
-
-    // // Mapping from token ID to approved address
-    // mapping (uint256 => address) private _tokenApprovals;
-
-    // // Mapping from owner to number of owned token
-    // mapping (address => Counters.Counter) private _ownedTokensCount;
-
-    // // Mapping from owner to operator approvals
-    // mapping (address => mapping (address => bool)) private _operatorApprovals;
-
-    // bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
-    /*
-    * 0x80ac58cd ===
-    *     bytes4(keccak256('balanceOf(address)')) ^
-    *     bytes4(keccak256('ownerOf(uint256)')) ^
-    *     bytes4(keccak256('approve(address,uint256)')) ^
-    *     bytes4(keccak256('getApproved(uint256)')) ^
-    *     bytes4(keccak256('setApprovalForAll(address,bool)')) ^
-    *     bytes4(keccak256('isApprovedForAll(address,address)')) ^
-    *     bytes4(keccak256('transferFrom(address,address,uint256)')) ^
-    *     bytes4(keccak256('safeTransferFrom(address,address,uint256)')) ^
-    *     bytes4(keccak256('safeTransferFrom(address,address,uint256,bytes)'))
-    */
 
     /**
     * @dev Event emitting when a NFT transfer occured

@@ -10,16 +10,6 @@ import "./Storage.sol";
 * @dev source : openzeppelin-solidity/contracts/introspection/ERC165.sol
 */
 contract ERC165 is IERC165, Storage {
-    // bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
-    /*
-    * 0x01ffc9a7 ===
-    *     bytes4(keccak256('supportsInterface(bytes4)'))
-    */
-
-    // /**
-    // * @dev a mapping of interface id to whether or not it's supported
-    // */
-    // mapping(bytes4 => bool) private _supportedInterfaces;
 
     /**
     * @dev A contract implementing SupportsInterfaceWithLookup
