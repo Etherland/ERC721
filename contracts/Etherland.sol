@@ -11,13 +11,13 @@
 pragma solidity 0.6.2;
 
 import "./TradeableERC721Token.sol";
-import "./TokensMetadatas.sol";
+import "./IpfsHashs.sol";
 import "./ERC1822/Proxiable.sol";
 
 /**
 * @title Etherland NFT Assets
 */
-contract Etherland is TradeableERC721Token, TokensMetadatas, Proxiable {
+contract Etherland is TradeableERC721Token, IpfsHashs, Proxiable {
     /**
     * @dev initialized state MUST remain set to false on Implementation Contract 
     */

@@ -1,5 +1,4 @@
-// File: contracts/Interfaces/IERC165.sol
-
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.6.2;
 
 /**
@@ -17,9 +16,6 @@ interface IERC165 {
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
 }
 
-// File: contracts/Libraries/SafeMath.sol
-
-pragma solidity 0.6.2;
 
 /**
 * @title SafeMath
@@ -86,9 +82,6 @@ library SafeMath {
     }
 }
 
-// File: contracts/Libraries/Counters.sol
-
-pragma solidity 0.6.2;
 
 
 
@@ -127,9 +120,6 @@ library Counters {
     }
 }
 
-// File: contracts/Storage.sol
-
-pragma solidity 0.6.2;
 
     
 contract Storage {
@@ -187,12 +177,6 @@ contract Storage {
     
 }
 
-// File: contracts/ERC165.sol
-
-pragma solidity 0.6.2;
-
-
-
 /**
 * @title ERC165
 * @author Matt Condon (@shrugs)
@@ -225,11 +209,6 @@ contract ERC165 is IERC165, Storage {
     }
 }
 
-// File: contracts/Interfaces/IERC721.sol
-
-pragma solidity 0.6.2;
-
-
 /**
 * @title ERC721 Non-Fungible Token Standard basic interface
 * @dev see https://eips.ethereum.org/EIPS/eip-721
@@ -254,10 +233,6 @@ interface IERC721 is IERC165 {
 
     function safeTransferFromWithData(address from, address to, uint256 tokenId, bytes calldata data) external;
 }
-
-// File: contracts/Interfaces/IERC721Receiver.sol
-
-pragma solidity 0.6.2;
 
 /**
 * @title ERC721 token receiver interface
@@ -284,10 +259,6 @@ interface IERC721Receiver {
     external returns (bytes4);
 }
 
-// File: contracts/Libraries/Address.sol
-
-pragma solidity 0.6.2;
-
 
 /**
 * Utility library of inline functions on addresses
@@ -313,15 +284,6 @@ library Address {
         return size > 0;
     }
 }
-
-// File: contracts/ERC721.sol
-
-pragma solidity 0.6.2;
-
-
-
-
-
 
 /**
 * @title ERC721 Non-Fungible Token Standard basic implementation
@@ -587,11 +549,6 @@ contract ERC721 is ERC165, IERC721 {
     }
 }
 
-// File: contracts/Interfaces/IERC721Full.sol
-
-pragma solidity 0.6.2;
-
-
 /**
 * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension
 * @dev See https://eips.ethereum.org/EIPS/eip-721
@@ -604,11 +561,6 @@ interface IERC721Full is IERC721 {
     function name() external view returns (string memory);
     function symbol() external view returns (string memory);
 }
-
-// File: contracts/ERC721Full.sol
-
-pragma solidity 0.6.2;
-
 
 
 /**
@@ -800,10 +752,6 @@ contract ERC721Full is ERC721, IERC721Full {
     }
 }
 
-// File: contracts/Ownable.sol
-
-pragma solidity 0.6.2;
-
 /**
 * @title Ownable
 * @dev The Ownable contract has an owner address, and provides basic authorization control
@@ -867,10 +815,6 @@ contract Ownable {
         _owner = newOwner;
     }
 }
-
-// File: contracts/Administrable.sol
-
-pragma solidity 0.6.2;
 
 
 /**
@@ -1009,11 +953,6 @@ contract Administrable is Ownable {
 
 }
 
-// File: contracts/Libraries/Strings.sol
-
-pragma solidity 0.6.2;
-
-
 // File: Strings library
 library Strings {
     // via https://github.com/oraclize/ethereum-api/blob/master/oraclizeAPI_0.5.sol
@@ -1079,19 +1018,11 @@ library Strings {
     }
 }
 
-// File: contracts/OwnableDelegateProxy.sol
-
-pragma solidity 0.6.2;
-
 /**
 * @title OwnableDelegateProxy
 * @dev OpenSea compliant feature
 */
 contract OwnableDelegateProxy { }
-
-// File: contracts/ProxyRegistry.sol
-
-pragma solidity 0.6.2;
 
 
 /**
@@ -1101,11 +1032,6 @@ pragma solidity 0.6.2;
 contract ProxyRegistry {
     mapping(address => OwnableDelegateProxy) public proxies;
 }
-
-// File: contracts/TradeableERC721Token.sol
-
-pragma solidity 0.6.2;
-
 
 
 
@@ -1190,31 +1116,30 @@ contract TradeableERC721Token is ERC721Full, Administrable {
     }
 }
 
-// File: contracts/TokensMetadatas.sol
-
-pragma solidity 0.6.2;
 
 
-contract TokensMetadatas is Administrable {
-    mapping(uint256 => string) private _tokensMetadatas;
+/**
+* @title IpfsHashs
+* @dev Provide methods to store and retrieve tokens IPFS CIDs
+*/
+contract IpfsHashs is Administrable {
 
-    function setMetadatas(uint256 _tokenId, string memory _metadatas) public onlyOwner {
-        _tokensMetadatas[_tokenId] = _metadatas;
+    mapping (uint => mapping(string => string)) internal ipfsHashs;
+
+    function setIpfsHash(uint tokenId, string memory docType, string memory _hash) public onlyMinter {
+        require(tokenId > 0, "denied : token zero cant be used");
+        ipfsHashs[tokenId][docType] = _hash;
     }
 
-    function removeMetadatas(uint256 _tokenId) public onlyOwner {
-        string memory emptyMetadatas = "";
-        _tokensMetadatas[_tokenId] = emptyMetadatas;
+    function removeIpfsHash(uint tokenId, string memory docType) public onlyMinterBurner {
+        ipfsHashs[tokenId][docType] = "";
     }
 
-    function getMetadatas(uint256 _tokenId) public view returns (string memory) {
-        return _tokensMetadatas[_tokenId];
+    function getIpfsHash(uint tokenId, string memory docType) public view returns (string memory) {
+        return ipfsHashs[tokenId][docType];
     }
+
 }
-
-// File: contracts/ERC1822/Proxiable.sol
-
-pragma solidity 0.6.2;
 
 /**
 * @title Proxiable
@@ -1238,10 +1163,9 @@ contract Proxiable {
     }
 }
 
-// File: contracts/Etherland.sol
 
-// SPDX-License-Identifier: UNLICENSED
 /**
+ * @title Etherland NFT Assets
  * @author Mathieu Lecoq
  * september 3rd 2020 
  *
@@ -1250,15 +1174,7 @@ contract Proxiable {
  *
  * @dev deployed with compiler version 0.6.2
  */
-pragma solidity 0.6.2;
-
-
-
-
-/**
-* @title Etherland NFT Assets
-*/
-contract Etherland is TradeableERC721Token, TokensMetadatas, Proxiable {
+contract Etherland is TradeableERC721Token, IpfsHashs, Proxiable {
     /**
     * @dev initialized state MUST remain set to false on Implementation Contract 
     */
