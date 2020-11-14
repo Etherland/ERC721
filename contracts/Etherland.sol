@@ -92,4 +92,15 @@ contract Etherland is TradeableERC721Token, IpfsHashs, Proxiable {
         updateCodeAddress(newCode);
     }
 
+    /**
+    * @dev Mint a new token with document hash corresponding to an IPFS CID
+    * @param _to address of the future owner of the token
+    * @param docType string representing the type of document that is stored to IPFS (can be "pdf" or any other token related document)
+    * @param _hash string representing the hash of a document with type equals to `docType`
+    */
+    function mintWithIpfsHash(address _to, string memory docType, string memory _hash) public onlyMinter {
+        mintTo(_to);
+        setIpfsHash(_currentTokenId, docType, _hash);
+    }
+
 }

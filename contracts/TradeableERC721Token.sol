@@ -24,6 +24,7 @@ contract TradeableERC721Token is ERC721Full, Administrable {
     * @param _to address of the future owner of the token
     */
     function mintTo(address _to) public onlyMinter {
+        require(_to != address(0), "cannot mint to address 0");
         uint256 newTokenId = _getNextTokenId();
         _mint(_to, newTokenId);
         _incrementTokenId();
@@ -36,10 +37,7 @@ contract TradeableERC721Token is ERC721Full, Administrable {
      */
     function batchMintTo(uint _total, address _to) public onlyMinter {
         require(_total > 0, "mint minimum 1 token");
-        require(_to != address(0), "cannot mint to address 0");
-
         for (uint i = 0; i < _total; i++) mintTo(_to);
-
     }
 
     /**

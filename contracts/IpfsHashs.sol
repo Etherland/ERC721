@@ -1,6 +1,6 @@
 pragma solidity 0.6.2;
 
-import './Administrable.sol';
+import "./Administrable.sol";
 
 /**
 * @title IpfsHashs
