@@ -11,6 +11,7 @@ contract('Proxy', (accounts) => {
   let code;
   // proxy
   let etherland;
+  let proxy;
 
   const owner = accounts[0];
   const user1 = accounts[1];
@@ -27,7 +28,8 @@ contract('Proxy', (accounts) => {
      * @todo FIX error `encodeABI is not a function`
      */
     const constructData = code.contract.methods.init(tokenName, tokenSymbol, proxyRegistry.address, baseURI, owner).encodeABI();
-    etherland = await Proxy.new(constructData, code.address, { from: owner });
+    proxy = await Proxy.new(constructData, code.address, { from: owner });
+    etherland = await Etherland.at(proxy.address);
   });
 
   it('checks if contract implements interfaces right', async () => {
@@ -281,16 +283,6 @@ contract('Proxy', (accounts) => {
     (await etherland.balanceOf(user1)).toString().should.equal('0');
     (await etherland.balanceOf(user2)).toString().should.equal('2');
     (await etherland.balanceOf(user3)).toString().should.equal('3');
-  });
-
-  it('setting Token Metadatas on token', async () => {
-    await etherland.batchMintTo(5, user1, { from: owner }).should.be.fulfilled;
-    (await etherland.balanceOf(user1)).toString().should.equal('5');
-    await etherland.setMetadatas(1, 'dataOfToken1', { from: user1 }).should.be.rejectedWith(EVMRevert);
-    await etherland.setMetadatas(1, 'dataOfToken1', { from: owner }).should.be.fulfilled;
-    (await etherland.getMetadatas(1)).toString().should.equal('dataOfToken1');
-    await etherland.removeMetadatas(1, { from: owner }).should.be.fulfilled;
-    (await etherland.getMetadatas(1)).toString().should.equal('');
   });
 
   it('testing admin rights', async () => {
