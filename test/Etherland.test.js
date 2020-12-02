@@ -1,12 +1,18 @@
 require('chai').use(require('chai-as-promised')).should();
 const EVMRevert = require('./helpers/VMExceptionRevert');
 
+const Proxy = artifacts.require('../contracts/ERC1822/Proxy.sol');
 const Etherland = artifacts.require('../contracts/Etherland.sol');
 const ProxyRegistry = artifacts.require('../contracts/ProxyRegistry.sol');
 
-contract('Etherland', (accounts) => {
-  let etherland;
+contract('Proxy', (accounts) => {
   let proxyRegistry;
+  // implem
+  let code;
+  // proxy
+  let etherland;
+  let proxy;
+
   const owner = accounts[0];
   const user1 = accounts[1];
   const user2 = accounts[2];
@@ -17,7 +23,13 @@ contract('Etherland', (accounts) => {
 
   beforeEach(async () => {
     proxyRegistry = await ProxyRegistry.new({ from: owner });
-    etherland = await Etherland.new(tokenName, tokenSymbol, proxyRegistry.address, baseURI, owner, { from: user1 });
+    code = await Etherland.new({ from: user1 });
+    /**
+     * @todo FIX error `encodeABI is not a function`
+     */
+    const constructData = code.contract.methods.init(tokenName, tokenSymbol, proxyRegistry.address, baseURI, owner).encodeABI();
+    proxy = await Proxy.new(constructData, code.address, { from: owner });
+    etherland = await Etherland.at(proxy.address);
   });
 
   it('checks if contract implements interfaces right', async () => {
@@ -271,16 +283,6 @@ contract('Etherland', (accounts) => {
     (await etherland.balanceOf(user1)).toString().should.equal('0');
     (await etherland.balanceOf(user2)).toString().should.equal('2');
     (await etherland.balanceOf(user3)).toString().should.equal('3');
-  });
-
-  it('setting Token Metadatas on token', async () => {
-    await etherland.batchMintTo(5, user1, { from: owner }).should.be.fulfilled;
-    (await etherland.balanceOf(user1)).toString().should.equal('5');
-    await etherland.setMetadatas(1, 'dataOfToken1', { from: user1 }).should.be.rejectedWith(EVMRevert);
-    await etherland.setMetadatas(1, 'dataOfToken1', { from: owner }).should.be.fulfilled;
-    (await etherland.getMetadatas(1)).toString().should.equal('dataOfToken1');
-    await etherland.removeMetadatas(1, { from: owner }).should.be.fulfilled;
-    (await etherland.getMetadatas(1)).toString().should.equal('');
   });
 
   it('testing admin rights', async () => {

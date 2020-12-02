@@ -1,0 +1,140 @@
+Rinkeby - 14/11/2020
+
+Migrations dry-run (simulation)
+===============================
+> Network name:    'rinkeby-fork'
+> Network id:      4
+> Block gas limit: 10000000 (0x989680)
+
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+   > block number:        7545761
+   > block timestamp:     1605344818
+   > account:             0x21fAC178E0b0df2Db51A06d52B32DE4479a8b3F1
+   > balance:             0.298960542
+   > gas used:            153490 (0x25792)
+   > gas price:           2 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00030698 ETH
+
+   -------------------------------------
+   > Total cost:          0.00030698 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Replacing 'Etherland'
+   ---------------------
+   > block number:        7545763
+   > block timestamp:     1605344832
+   > account:             0x21fAC178E0b0df2Db51A06d52B32DE4479a8b3F1
+   > balance:             0.293394004
+   > gas used:            2755990 (0x2a0d96)
+   > gas price:           2 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00551198 ETH
+
+
+   Replacing 'Proxy'
+   -----------------
+   > block number:        7545764
+   > block timestamp:     1605344905
+   > account:             0x21fAC178E0b0df2Db51A06d52B32DE4479a8b3F1
+   > balance:             0.293039656
+   > gas used:            177174 (0x2b416)
+   > gas price:           2 gwei
+   > value sent:          0 ETH
+   > total cost:          0.000354348 ETH
+
+   -------------------------------------
+   > Total cost:         0.005866328 ETH
+
+
+Summary
+=======
+> Total deployments:   3
+> Final cost:          0.006173308 ETH
+
+
+
+
+
+Starting migrations...
+======================
+> Network name:    'rinkeby'
+> Network id:      4
+> Block gas limit: 10000000 (0x989680)
+
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+   > transaction hash:    0x2ff17e6ca44e2452878437a2edd7d40f0b6cb176f8ab04937272b56afe2d6d0f
+   > Blocks: 1            Seconds: 8
+   > contract address:    0x43DFE31a3EE579Ec5CE8f2a11ae217F90E77a11C
+   > block number:        7545769
+   > block timestamp:     1605344938
+   > account:             0x21fAC178E0b0df2Db51A06d52B32DE4479a8b3F1
+   > balance:             0.295897722
+   > gas used:            168490 (0x2922a)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0033698 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:           0.0033698 ETH
+
+
+2_deploy_contracts.js
+=====================
+
+   Replacing 'Etherland'
+   ---------------------
+   > transaction hash:    0x16835cef7803b1b272f5b6b49d9f055ffc93c02ec2d2bb66d9aef4a3db594fe0
+   > Blocks: 1            Seconds: 12
+   > contract address:    0x2Bf94b941571AFf63E8022B0F492c217Aa9A3A1B
+   > block number:        7545771
+   > block timestamp:     1605344968
+   > account:             0x21fAC178E0b0df2Db51A06d52B32DE4479a8b3F1
+   > balance:             0.239500342
+   > gas used:            2777590 (0x2a61f6)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0555518 ETH
+
+
+   Replacing 'Proxy'
+   -----------------
+   > transaction hash:    0xcc5d6e080e47ed8b64865f5ac5e6039d5082ba42db38076357d4ef8f5be60733
+   > Blocks: 1            Seconds: 12
+   > contract address:    0x98cdB0D8328c56997C807809Ab318712943c72e7
+   > block number:        7545772
+   > block timestamp:     1605344983
+   > account:             0x21fAC178E0b0df2Db51A06d52B32DE4479a8b3F1
+   > balance:             0.232056862
+   > gas used:            372174 (0x5adce)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00744348 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.06299528 ETH
+
+
+Summary
+=======
+> Total deployments:   3
+> Final cost:          0.06636508 ETH

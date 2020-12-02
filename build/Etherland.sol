@@ -1,5 +1,4 @@
-// File: contracts/Interfaces/IERC165.sol
-
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.6.2;
 
 /**
@@ -17,115 +16,6 @@ interface IERC165 {
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
 }
 
-// File: contracts/ERC165.sol
-
-pragma solidity 0.6.2;
-
-
-/**
-* @title ERC165
-* @author Matt Condon (@shrugs)
-* @dev Implements ERC165 using a lookup table.
-* @dev source : openzeppelin-solidity/contracts/introspection/ERC165.sol
-*/
-contract ERC165 is IERC165 {
-    bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
-    /*
-    * 0x01ffc9a7 ===
-    *     bytes4(keccak256('supportsInterface(bytes4)'))
-    */
-
-    /**
-    * @dev a mapping of interface id to whether or not it's supported
-    */
-    mapping(bytes4 => bool) private _supportedInterfaces;
-
-    /**
-    * @dev A contract implementing SupportsInterfaceWithLookup
-    * implement ERC165 itself
-    */
-    constructor () internal {
-        _registerInterface(_INTERFACE_ID_ERC165);
-    }
-
-    /**
-    * @dev implement supportsInterface(bytes4) using a lookup table
-    */
-    function supportsInterface(bytes4 interfaceId) external override view returns (bool) {
-        return _supportedInterfaces[interfaceId];
-    }
-
-    /**
-    * @dev internal method for registering an interface
-    */
-    function _registerInterface(bytes4 interfaceId) internal {
-        require(interfaceId != 0xffffffff, "bad interface");
-        _supportedInterfaces[interfaceId] = true;
-    }
-}
-
-// File: contracts/Interfaces/IERC721.sol
-
-pragma solidity 0.6.2;
-
-
-/**
-* @title ERC721 Non-Fungible Token Standard basic interface
-* @dev see https://eips.ethereum.org/EIPS/eip-721
-* @dev source : openzeppelin-solidity/contracts/token/ERC721/IERC721.sol
-*/
-interface IERC721 is IERC165 {
-    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
-    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
-    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
-
-    function balanceOf(address owner) external view returns (uint256 balance);
-    function ownerOf(uint256 tokenId) external view returns (address owner);
-
-    function approve(address to, uint256 tokenId) external;
-    function getApproved(uint256 tokenId) external view returns (address operator);
-
-    function setApprovalForAll(address operator, bool _approved) external;
-    function isApprovedForAll(address owner, address operator) external view returns (bool);
-
-    function transferFrom(address from, address to, uint256 tokenId) external;
-    function safeTransferFrom(address from, address to, uint256 tokenId) external;
-
-    function safeTransferFromWithData(address from, address to, uint256 tokenId, bytes calldata data) external;
-}
-
-// File: contracts/Interfaces/IERC721Receiver.sol
-
-pragma solidity 0.6.2;
-
-/**
-* @title ERC721 token receiver interface
-* @dev Interface for any contract that wants to support safeTransfers
-* from ERC721 asset contracts.
-* @dev source : openzeppelin-solidity/contracts/token/ERC721/IERC721Receiver.sol
-*/
-interface IERC721Receiver {
-    /**
-    * @notice Handle the receipt of an NFT
-    * @dev The ERC721 smart contract calls this function on the recipient
-    * after a `safeTransfer`. This function MUST return the function selector,
-    * otherwise the caller will revert the transaction. The selector to be
-    * returned can be obtained as `this.onERC721Received.selector`. This
-    * function MAY throw to revert and reject the transfer.
-    * Note: the ERC721 contract address is always the message sender.
-    * @param operator The address which called `safeTransferFrom` function
-    * @param from The address which previously owned the token
-    * @param tokenId The NFT identifier which is being transferred
-    * @param data Additional data with no specified format
-    * @return bytes4 `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
-    */
-    function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data)
-    external returns (bytes4);
-}
-
-// File: contracts/Libraries/SafeMath.sol
-
-pragma solidity 0.6.2;
 
 /**
 * @title SafeMath
@@ -192,39 +82,6 @@ library SafeMath {
     }
 }
 
-// File: contracts/Libraries/Address.sol
-
-pragma solidity 0.6.2;
-
-
-/**
-* Utility library of inline functions on addresses
-* @dev source : openzeppelin-solidity/contracts/utils/Address.sol
-*/
-library Address {
-    /**
-    * Returns whether the target address is a contract
-    * @dev This function will return false if invoked during the constructor of a contract,
-    * as the code is not actually created until after the constructor finishes.
-    * @param account address of the account to check
-    * @return whether the target address is a contract
-    */
-    function isContract(address account) internal view returns (bool) {
-        uint256 size;
-        // XXX Currently there is no better way to check if there is a contract in an address
-        // than to check the size of the code at that address.
-        // See https://ethereum.stackexchange.com/a/14016/36603
-        // for more details about how this works.
-        // contracts then.
-        // solhint-disable-next-line no-inline-assembly
-        assembly { size := extcodesize(account) }
-        return size > 0;
-    }
-}
-
-// File: contracts/Libraries/Counters.sol
-
-pragma solidity 0.6.2;
 
 
 
@@ -263,15 +120,170 @@ library Counters {
     }
 }
 
-// File: contracts/ERC721.sol
 
-pragma solidity 0.6.2;
+    
+contract Storage {
+    using Counters for Counters.Counter;
+
+    // Token name
+    string internal _name;
+    // Token symbol
+    string internal _symbol;
+    // Token base uri
+    string internal _baseTokenURI;
+
+    bytes4 internal constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
+    bytes4 internal constant _ERC721_RECEIVED = 0x150b7a02;
+    bytes4 internal constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
+    bytes4 internal constant _INTERFACE_ID_ERC721_ENUMERABLE = 0x780e9d63;
+    bytes4 internal constant _INTERFACE_ID_ERC721_METADATA = 0x5b5e139f;
+    
+    // OpenSea proxy registry
+    address public proxyRegistryAddress;
+
+    // token id tracker
+    uint256 internal _currentTokenId = 0;
+    
+    // Array with all token ids, used for enumeration
+    uint256[] internal _allTokens;
+
+    // mapping of interface id to whether or not it's supported    
+    mapping(bytes4 => bool) internal _supportedInterfaces;
+
+    // Mapping from token ID to owner
+    mapping (uint256 => address) internal _tokenOwner;
+
+    // Mapping from token ID to approved address
+    mapping (uint256 => address) internal _tokenApprovals;
+
+    // Mapping from owner to number of owned token
+    mapping (address => Counters.Counter) internal _ownedTokensCount;
+
+    // Mapping from owner to operator approvals
+    mapping (address => mapping (address => bool)) internal _operatorApprovals;
+
+    // Optional mapping for token URIs
+    mapping(uint256 => string) internal _tokenURIs;
+
+    // Mapping from owner to list of owned token IDs
+    mapping(address => uint256[]) internal _ownedTokens;
+
+    // Mapping from token ID to index of the owner tokens list
+    mapping(uint256 => uint256) internal _ownedTokensIndex;
+
+    // Mapping from token id to position in the allTokens array
+    mapping(uint256 => uint256) internal _allTokensIndex;
+
+    
+}
+
+/**
+* @title ERC165
+* @author Matt Condon (@shrugs)
+* @dev Implements ERC165 using a lookup table.
+* @dev source : openzeppelin-solidity/contracts/introspection/ERC165.sol
+*/
+contract ERC165 is IERC165, Storage {
+
+    // /**
+    // * @dev A contract implementing SupportsInterfaceWithLookup
+    // * implement ERC165 itself
+    // */
+    // constructor () internal {
+    //     _registerInterface(_INTERFACE_ID_ERC165);
+    // }
+
+    /**
+    * @dev implement supportsInterface(bytes4) using a lookup table
+    */
+    function supportsInterface(bytes4 interfaceId) external override view returns (bool) {
+        return _supportedInterfaces[interfaceId];
+    }
+
+    /**
+    * @dev internal method for registering an interface
+    */
+    function _registerInterface(bytes4 interfaceId) internal {
+        require(interfaceId != 0xffffffff, "bad interface");
+        _supportedInterfaces[interfaceId] = true;
+    }
+}
+
+/**
+* @title ERC721 Non-Fungible Token Standard basic interface
+* @dev see https://eips.ethereum.org/EIPS/eip-721
+* @dev source : openzeppelin-solidity/contracts/token/ERC721/IERC721.sol
+*/
+interface IERC721 is IERC165 {
+    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
+    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
+    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
+
+    function balanceOf(address owner) external view returns (uint256 balance);
+    function ownerOf(uint256 tokenId) external view returns (address owner);
+
+    function approve(address to, uint256 tokenId) external;
+    function getApproved(uint256 tokenId) external view returns (address operator);
+
+    function setApprovalForAll(address operator, bool _approved) external;
+    function isApprovedForAll(address owner, address operator) external view returns (bool);
+
+    function transferFrom(address from, address to, uint256 tokenId) external;
+    function safeTransferFrom(address from, address to, uint256 tokenId) external;
+
+    function safeTransferFromWithData(address from, address to, uint256 tokenId, bytes calldata data) external;
+}
+
+/**
+* @title ERC721 token receiver interface
+* @dev Interface for any contract that wants to support safeTransfers
+* from ERC721 asset contracts.
+* @dev source : openzeppelin-solidity/contracts/token/ERC721/IERC721Receiver.sol
+*/
+interface IERC721Receiver {
+    /**
+    * @notice Handle the receipt of an NFT
+    * @dev The ERC721 smart contract calls this function on the recipient
+    * after a `safeTransfer`. This function MUST return the function selector,
+    * otherwise the caller will revert the transaction. The selector to be
+    * returned can be obtained as `this.onERC721Received.selector`. This
+    * function MAY throw to revert and reject the transfer.
+    * Note: the ERC721 contract address is always the message sender.
+    * @param operator The address which called `safeTransferFrom` function
+    * @param from The address which previously owned the token
+    * @param tokenId The NFT identifier which is being transferred
+    * @param data Additional data with no specified format
+    * @return bytes4 `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
+    */
+    function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data)
+    external returns (bytes4);
+}
 
 
-
-
-
-
+/**
+* Utility library of inline functions on addresses
+* @dev source : openzeppelin-solidity/contracts/utils/Address.sol
+*/
+library Address {
+    /**
+    * Returns whether the target address is a contract
+    * @dev This function will return false if invoked during the constructor of a contract,
+    * as the code is not actually created until after the constructor finishes.
+    * @param account address of the account to check
+    * @return whether the target address is a contract
+    */
+    function isContract(address account) internal view returns (bool) {
+        uint256 size;
+        // XXX Currently there is no better way to check if there is a contract in an address
+        // than to check the size of the code at that address.
+        // See https://ethereum.stackexchange.com/a/14016/36603
+        // for more details about how this works.
+        // contracts then.
+        // solhint-disable-next-line no-inline-assembly
+        assembly { size := extcodesize(account) }
+        return size > 0;
+    }
+}
 
 /**
 * @title ERC721 Non-Fungible Token Standard basic implementation
@@ -281,37 +293,6 @@ pragma solidity 0.6.2;
 contract ERC721 is ERC165, IERC721 {
     using SafeMath for uint256;
     using Address for address;
-    using Counters for Counters.Counter;
-
-    // Equals to `bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))`
-    // which can be also obtained as `IERC721Receiver(0).onERC721Received.selector`
-    bytes4 private constant _ERC721_RECEIVED = 0x150b7a02;
-
-    // Mapping from token ID to owner
-    mapping (uint256 => address) private _tokenOwner;
-
-    // Mapping from token ID to approved address
-    mapping (uint256 => address) private _tokenApprovals;
-
-    // Mapping from owner to number of owned token
-    mapping (address => Counters.Counter) private _ownedTokensCount;
-
-    // Mapping from owner to operator approvals
-    mapping (address => mapping (address => bool)) private _operatorApprovals;
-
-    bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
-    /*
-    * 0x80ac58cd ===
-    *     bytes4(keccak256('balanceOf(address)')) ^
-    *     bytes4(keccak256('ownerOf(uint256)')) ^
-    *     bytes4(keccak256('approve(address,uint256)')) ^
-    *     bytes4(keccak256('getApproved(uint256)')) ^
-    *     bytes4(keccak256('setApprovalForAll(address,bool)')) ^
-    *     bytes4(keccak256('isApprovedForAll(address,address)')) ^
-    *     bytes4(keccak256('transferFrom(address,address,uint256)')) ^
-    *     bytes4(keccak256('safeTransferFrom(address,address,uint256)')) ^
-    *     bytes4(keccak256('safeTransferFrom(address,address,uint256,bytes)'))
-    */
 
     /**
     * @dev Event emitting when a NFT transfer occured
@@ -328,10 +309,10 @@ contract ERC721 is ERC165, IERC721 {
     */
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
-    constructor () public {
-        // register the supported interfaces to conform to ERC721 via ERC165
-        _registerInterface(_INTERFACE_ID_ERC721);
-    }
+    // constructor () public {
+    //     // register the supported interfaces to conform to ERC721 via ERC165
+    //     _registerInterface(_INTERFACE_ID_ERC721);
+    // }
 
     /**
     * @dev Gets the balance of the specified address
@@ -568,11 +549,6 @@ contract ERC721 is ERC165, IERC721 {
     }
 }
 
-// File: contracts/Interfaces/IERC721Full.sol
-
-pragma solidity 0.6.2;
-
-
 /**
 * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension
 * @dev See https://eips.ethereum.org/EIPS/eip-721
@@ -586,11 +562,6 @@ interface IERC721Full is IERC721 {
     function symbol() external view returns (string memory);
 }
 
-// File: contracts/ERC721Full.sol
-
-pragma solidity 0.6.2;
-
-
 
 /**
 * @title Full ERC721 Token
@@ -600,57 +571,14 @@ pragma solidity 0.6.2;
 * @dev source : openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol
 */
 contract ERC721Full is ERC721, IERC721Full {
-
-    // Token name
-    string private _name;
-
-    // Token symbol
-    string private _symbol;
-
-    // Optional mapping for token URIs
-    mapping(uint256 => string) private _tokenURIs;
-
     using SafeMath for uint256;
-    // Mapping from owner to list of owned token IDs
-    mapping(address => uint256[]) private _ownedTokens;
-
-    // Mapping from token ID to index of the owner tokens list
-    mapping(uint256 => uint256) private _ownedTokensIndex;
-
-    // Array with all token ids, used for enumeration
-    uint256[] private _allTokens;
-
-    // Mapping from token id to position in the allTokens array
-    mapping(uint256 => uint256) private _allTokensIndex;
-
-    bytes4 private constant _INTERFACE_ID_ERC721_ENUMERABLE = 0x780e9d63;
-    /*
-    * 0x780e9d63 ===
-    *     bytes4(keccak256('totalSupply()')) ^
-    *     bytes4(keccak256('tokenOfOwnerByIndex(address,uint256)')) ^
-    *     bytes4(keccak256('tokenByIndex(uint256)'))
-    */
-
-    bytes4 private constant _INTERFACE_ID_ERC721_METADATA = 0x5b5e139f;
-    /*
-    * 0x5b5e139f ===
-    *     bytes4(keccak256('name()')) ^
-    *     bytes4(keccak256('symbol()')) ^
-    *     bytes4(keccak256('tokenURI(uint256)'))
-    */
-
 
     /**
     * @dev Constructor function
     */
-    constructor (string memory name, string memory symbol) public {
+    function init (string memory name, string memory symbol) internal {
         _name = name;
         _symbol = symbol;
-
-        // register the supported interfaces to conform to ERC721 via ERC165
-        _registerInterface(_INTERFACE_ID_ERC721_METADATA);
-        // register the supported interface to conform to ERC721Enumerable via ERC165
-        _registerInterface(_INTERFACE_ID_ERC721_ENUMERABLE);
     }
 
     /**
@@ -783,25 +711,17 @@ contract ERC721Full is ERC721, IERC721Full {
     * @param tokenId uint256 ID of the token to be removed from the tokens list of the given address
     */
     function _removeTokenFromOwnerEnumeration(address from, uint256 tokenId) private {
-        // To prevent a gap in from's tokens array, we store the last token in the index of the token to delete, and
-        // then delete the last slot (swap and pop).
-
         uint256 lastTokenIndex = _ownedTokens[from].length.sub(1);
         uint256 tokenIndex = _ownedTokensIndex[tokenId];
 
-        // When the token to delete is the last token, the swap operation is unnecessary
         if (tokenIndex != lastTokenIndex) {
             uint256 lastTokenId = _ownedTokens[from][lastTokenIndex];
 
-            _ownedTokens[from][tokenIndex] = lastTokenId; // Move the last token to the slot of the to-delete token
-            _ownedTokensIndex[lastTokenId] = tokenIndex; // Update the moved token's index
+            _ownedTokens[from][tokenIndex] = lastTokenId; 
+            _ownedTokensIndex[lastTokenId] = tokenIndex; 
         }
 
-        // This also deletes the contents at the last position of the array
         _ownedTokens[from].pop();
-
-        // Note that _ownedTokensIndex[tokenId] hasn't been cleared: it still points to the old slot (now occupied by
-        // lastTokenId, or just over the end of the array if the token was the last one).
     }
 
     /**
@@ -810,21 +730,14 @@ contract ERC721Full is ERC721, IERC721Full {
     * @param tokenId uint256 ID of the token to be removed from the tokens list
     */
     function _removeTokenFromAllTokensEnumeration(uint256 tokenId) private {
-        // To prevent a gap in the tokens array, we store the last token in the index of the token to delete, and
-        // then delete the last slot (swap and pop).
-
         uint256 lastTokenIndex = _allTokens.length.sub(1);
         uint256 tokenIndex = _allTokensIndex[tokenId];
 
-        // When the token to delete is the last token, the swap operation is unnecessary. However, since this occurs so
-        // rarely (when the last minted token is burnt) that we still do the swap here to avoid the gas cost of adding
-        // an 'if' statement (like in _removeTokenFromOwnerEnumeration)
         uint256 lastTokenId = _allTokens[lastTokenIndex];
 
-        _allTokens[tokenIndex] = lastTokenId; // Move the last token to the slot of the to-delete token
-        _allTokensIndex[lastTokenId] = tokenIndex; // Update the moved token's index
+        _allTokens[tokenIndex] = lastTokenId; 
+        _allTokensIndex[lastTokenId] = tokenIndex; 
 
-        // This also deletes the contents at the last position of the array
         _allTokens.pop();
         _allTokensIndex[tokenId] = 0;
     }
@@ -839,10 +752,6 @@ contract ERC721Full is ERC721, IERC721Full {
     }
 }
 
-// File: contracts/Ownable.sol
-
-pragma solidity 0.6.2;
-
 /**
 * @title Ownable
 * @dev The Ownable contract has an owner address, and provides basic authorization control
@@ -853,16 +762,6 @@ contract Ownable {
     address private _owner;
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-
-    /**
-    * @dev The Ownable constructor sets the original `owner` of the contract to the sender
-    * account.
-    */
-    constructor () internal {
-        // default deployment owner : CEO - Etherland ltd
-        _owner = address(msg.sender);
-        emit OwnershipTransferred(address(0), _owner);
-    }
 
     /**
     * @return the address of the owner.
@@ -917,31 +816,25 @@ contract Ownable {
     }
 }
 
-// File: contracts/Administrable.sol
-
-pragma solidity 0.6.2;
-
 
 /**
  * @title Administrable
  * @dev Handle allowances for NFTs administration :
  *      - minting
+ *      - burning
  *      - access to admin web interfaces
+ * @dev ADMINS STORAGE 
+ * @dev rights are integer(int16) defined as follow :
+ *       1 : address can only mint tokens 
+ *       2 : address can mint AND burn tokens
 */
 contract Administrable is Ownable {
-    /**
-    * @dev ADMINS STORAGE 
-    * @dev rights are integer(int16) defined as follow :
-    *       1 : address can only mint tokens 
-    *       2 : address can mint AND burn tokens
-    */
+    
     mapping(address => int16) private admins;
 
-    /***** EVENTS *****/
     event AdminRightsGranted(address indexed newAdmin, int16 adminRights);
     event AdminRightsRevoked(address indexed noAdmin);
 
-    /***** GETTERS *****/
     /**
     * @dev know if an address has admin rights and its type of rights
     * @param _admin the address to find admin rights of
@@ -1001,8 +894,6 @@ contract Administrable is Ownable {
         );
     }
 
-
-    /***** VERIFIERS *****/
     /**
     * @dev onlyMinter internal
     */
@@ -1013,7 +904,6 @@ contract Administrable is Ownable {
         );
         _;
     }
-
 
     /**
     * @dev onlyBurner internal
@@ -1031,8 +921,6 @@ contract Administrable is Ownable {
         _;
     }
 
-
-    /***** SETTERS *****/
     /**
     * @dev owner can grant admin access to allow any address to mint new tokens
     * @dev Restricted to CONTRACT OWNER ONLY
@@ -1064,11 +952,6 @@ contract Administrable is Ownable {
     }
 
 }
-
-// File: contracts/Libraries/Strings.sol
-
-pragma solidity 0.6.2;
-
 
 // File: Strings library
 library Strings {
@@ -1135,20 +1018,11 @@ library Strings {
     }
 }
 
-// File: contracts/OwnableDelegateProxy.sol
-
-pragma solidity 0.6.2;
-
-
 /**
 * @title OwnableDelegateProxy
 * @dev OpenSea compliant feature
 */
 contract OwnableDelegateProxy { }
-
-// File: contracts/ProxyRegistry.sol
-
-pragma solidity 0.6.2;
 
 
 /**
@@ -1159,27 +1033,20 @@ contract ProxyRegistry {
     mapping(address => OwnableDelegateProxy) public proxies;
 }
 
-// File: contracts/TradeableERC721Token.sol
-
-pragma solidity 0.6.2;
-
-
 
 
 
 /**
 * @title TradeableERC721Token
-* TradeableERC721Token - ERC721 contract that whitelists a trading address, and has minting functionality.
+* ERC721 contract that whitelists a trading address, and has minting functionalities.
 * @notice an external 'burn' function restricted to owner as been added
 */
 contract TradeableERC721Token is ERC721Full, Administrable {
     using Strings for string;
     using SafeMath for uint256;
 
-    address public proxyRegistryAddress;
-    uint256 private _currentTokenId = 0;
-
-    constructor(string memory _name, string memory _symbol, address _proxyRegistryAddress) public ERC721Full(_name, _symbol) {
+    function init(string memory _name, string memory _symbol, address _proxyRegistryAddress) internal {
+        ERC721Full.init(_name, _symbol);
         proxyRegistryAddress = _proxyRegistryAddress;
     }
 
@@ -1249,40 +1116,57 @@ contract TradeableERC721Token is ERC721Full, Administrable {
     }
 }
 
-// File: contracts/TokensMetadatas.sol
 
-pragma solidity 0.6.2;
 
 /**
- * @title TokensMetadatas
- * @dev setMetadatas
- * @dev getMetadatas
- * @dev removeMetadatas
- */
-contract TokensMetadatas is Administrable {
-    // Mapping from token ID to token metadatas
-    mapping(uint256 => string) private _tokensMetadatas;
+* @title IpfsHashs
+* @dev Provide methods to store and retrieve tokens IPFS CIDs
+*/
+contract IpfsHashs is Administrable {
 
-    function setMetadatas(uint256 _tokenId, string memory _metadatas) public onlyOwner {
-        _tokensMetadatas[_tokenId] = _metadatas;
+    mapping (uint => mapping(string => string)) internal ipfsHashs;
+
+    function setIpfsHash(uint tokenId, string memory docType, string memory _hash) public onlyMinter {
+        require(tokenId > 0, "denied : token zero cant be used");
+        ipfsHashs[tokenId][docType] = _hash;
     }
 
-    function removeMetadatas(uint256 _tokenId) public onlyOwner {
-        string memory emptyMetadatas = "";
-        _tokensMetadatas[_tokenId] = emptyMetadatas;
+    function removeIpfsHash(uint tokenId, string memory docType) public onlyMinterBurner {
+        ipfsHashs[tokenId][docType] = "";
     }
 
-    function getMetadatas(uint256 _tokenId) public view returns (string memory) {
-        return _tokensMetadatas[_tokenId];
+    function getIpfsHash(uint tokenId, string memory docType) public view returns (string memory) {
+        return ipfsHashs[tokenId][docType];
+    }
+
+}
+
+/**
+* @title Proxiable
+* @dev Etherland - EIP-1822 Proxiable contract implementation
+* @dev https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md
+*/
+contract Proxiable {
+    // Code position in storage is keccak256("PROXIABLE") = "0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7"
+
+    function updateCodeAddress(address newAddress) internal {
+        require(
+            bytes32(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7) == Proxiable(newAddress).proxiableUUID(),
+            "Not compatible"
+        );
+        assembly { // solium-disable-line
+            sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, newAddress)
+        }
+    }
+    function proxiableUUID() public pure returns (bytes32) {
+        return 0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7;
     }
 }
 
-// File: contracts/Etherland.sol
 
-// SPDX-License-Identifier: UNLICENSED
 /**
- * @dev Credits to
- * Mathieu Lecoq
+ * @title Etherland NFT Assets
+ * @author Mathieu Lecoq
  * september 3rd 2020 
  *
  * @dev Property
@@ -1290,46 +1174,79 @@ contract TokensMetadatas is Administrable {
  *
  * @dev deployed with compiler version 0.6.2
  */
-pragma solidity 0.6.2;
-
-
-
-/**
-* @title Etherland NFT Assets
-*/
-contract Etherland is TradeableERC721Token, TokensMetadatas {
-    string private _baseTokenURI;
+contract Etherland is TradeableERC721Token, IpfsHashs, Proxiable {
+    /**
+    * @dev initialized state MUST remain set to false on Implementation Contract 
+    */
+    bool public initialized = false;
 
     /**
     * @dev event emitting when the `_baseTokenUri` is updated by owner
     */
     event BaseTokenUriUpdated(string newUri);
 
-    constructor(
+    /**
+    * @dev Logic code implementation contact constructor
+    * @dev MUST be called by deployer only if contract has not been initialized before
+    */
+    function init(
         string memory _name,
         string memory _symbol,
         address _proxyRegistryAddress,
         string memory baseURI,
         address _owner
-    ) public TradeableERC721Token(_name, _symbol, _proxyRegistryAddress) {
-        _baseTokenURI = baseURI;
-        _transferOwnership(_owner);
+    ) public {
+        if (initialized != true) {
+            initialized = true;
+
+            TradeableERC721Token.init(_name, _symbol, _proxyRegistryAddress);
+
+            _baseTokenURI = baseURI;
+
+            // register the supported interfaces to conform to ERC721 via ERC165
+            _registerInterface(_INTERFACE_ID_ERC165);
+            _registerInterface(_INTERFACE_ID_ERC721_METADATA);
+            _registerInterface(_INTERFACE_ID_ERC721_ENUMERABLE);
+            _registerInterface(_INTERFACE_ID_ERC721);
+
+            _transferOwnership(_owner);
+        }
     }
 
+    /**
+    * @dev Retrieve all NFTs base token uri 
+    */
     function baseTokenURI() public view returns (string memory) {
         return _baseTokenURI;
     }
 
+    /**
+    * @dev Set the base token uri for all NFTs
+    */
     function setBaseTokenURI(string memory uri) public onlyOwner {
         _baseTokenURI = uri;
         emit BaseTokenUriUpdated(uri);
     }
 
+    /**
+    * @dev Retrieve the uri of a specific token 
+    * @param _tokenId the id of the token to retrieve the uri of
+    * @return computed uri string pointing to a specific _tokenId
+    */
     function tokenURI(uint256 _tokenId) external view returns (string memory) {
         return Strings.strConcat(
             baseTokenURI(),
             Strings.uint2str(_tokenId)
         );
+    }
+
+    /**
+    * @dev EIP-1822 feature
+    * @dev Realize an update of the Etherland logic code 
+    * @dev calls the proxy contract to update stored logic code contract address at keccak256("PROXIABLE")
+    */
+    function updateCode(address newCode) public onlyOwner {
+        updateCodeAddress(newCode);
     }
 
 }
