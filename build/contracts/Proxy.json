@@ -23,15 +23,15 @@
       "payable": true
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"constructData\",\"type\":\"bytes\"},{\"internalType\":\"address\",\"name\":\"contractLogic\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"}],\"devdoc\":{\"details\":\"Etherland - ERC1822 Proxy contract implementationhttps://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md\",\"methods\":{},\"title\":\"Proxy \"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxy.sol\":\"Proxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxy.sol\":{\"keccak256\":\"0x79f7e0505a951937758e2e54e5840a600e65461794794ad2ce8ddd623b15e0d1\",\"urls\":[\"bzz-raw://7bf425cb6f40781d62015c52b05f37ad683aa28ced64a0eab35b24cf0ed2d3a4\",\"dweb:/ipfs/QmdpG2Mxx6X4297v6Vh6Rzek832zDt6gRDyXGSF42tMmGR\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516102a53803806102a58339818101604052604081101561003357600080fd5b810190808051604051939291908464010000000082111561005357600080fd5b90830190602082018581111561006857600080fd5b825164010000000081118282018810171561008257600080fd5b82525081516020918201929091019080838360005b838110156100af578181015183820152602001610097565b50505050905090810190601f1680156100dc5780820380516001836020036101000a031916815260200191505b5060405260200180519060200190929190505050807fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf75560006060826001600160a01b0316846040518082805190602001908083835b602083106101515780518252601f199092019160209182019101610132565b6001836020036101000a038019825116818451168082178552505050505050905001915050600060405180830381855af49150503d80600081146101b1576040519150601f19603f3d011682016040523d82523d6000602084013e6101b6565b606091505b50915091508161020d576040805162461bcd60e51b815260206004820152601360248201527f436f6e737472756374696f6e206661696c656400000000000000000000000000604482015290519081900360640190fd5b5050505060868061021f6000396000f3fe60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7543660008037600080366000846127105a03f43d9150816000803e808015604b57826000f35b826000fdfea26469706673582212205e82b7a80adfe858d567da239a7a289d85bc9bd89e00c75bdb019afcc7fca23d64736f6c63430006020033",
-  "deployedBytecode": "0x60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7543660008037600080366000846127105a03f43d9150816000803e808015604b57826000f35b826000fdfea26469706673582212205e82b7a80adfe858d567da239a7a289d85bc9bd89e00c75bdb019afcc7fca23d64736f6c63430006020033",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"constructData\",\"type\":\"bytes\"},{\"internalType\":\"address\",\"name\":\"contractLogic\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"}],\"devdoc\":{\"details\":\"Etherland - ERC1822 Proxy contract implementationhttps://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md\",\"methods\":{},\"title\":\"Proxy \"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxy.sol\":\"Proxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxy.sol\":{\"keccak256\":\"0x79f7e0505a951937758e2e54e5840a600e65461794794ad2ce8ddd623b15e0d1\",\"urls\":[\"bzz-raw://7bf425cb6f40781d62015c52b05f37ad683aa28ced64a0eab35b24cf0ed2d3a4\",\"dweb:/ipfs/QmdpG2Mxx6X4297v6Vh6Rzek832zDt6gRDyXGSF42tMmGR\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516102a53803806102a58339818101604052604081101561003357600080fd5b810190808051604051939291908464010000000082111561005357600080fd5b90830190602082018581111561006857600080fd5b825164010000000081118282018810171561008257600080fd5b82525081516020918201929091019080838360005b838110156100af578181015183820152602001610097565b50505050905090810190601f1680156100dc5780820380516001836020036101000a031916815260200191505b5060405260200180519060200190929190505050807fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf75560006060826001600160a01b0316846040518082805190602001908083835b602083106101515780518252601f199092019160209182019101610132565b6001836020036101000a038019825116818451168082178552505050505050905001915050600060405180830381855af49150503d80600081146101b1576040519150601f19603f3d011682016040523d82523d6000602084013e6101b6565b606091505b50915091508161020d576040805162461bcd60e51b815260206004820152601360248201527f436f6e737472756374696f6e206661696c656400000000000000000000000000604482015290519081900360640190fd5b5050505060868061021f6000396000f3fe60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7543660008037600080366000846127105a03f43d9150816000803e808015604b57826000f35b826000fdfea2646970667358221220f00996f8349faeb6b3448379020b6040784157c0bfaf1c8abb0201ecefcde79064736f6c63430006020033",
+  "deployedBytecode": "0x60806040527fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7543660008037600080366000846127105a03f43d9150816000803e808015604b57826000f35b826000fdfea2646970667358221220f00996f8349faeb6b3448379020b6040784157c0bfaf1c8abb0201ecefcde79064736f6c63430006020033",
   "sourceMap": "173:943:3:-:0;;;194:344;8:9:-1;5:2;;;30:1;27;20:12;5:2;194:344:3;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;194:344:3;;;;;;;;;;;;;19:11:-1;14:3;11:20;8:2;;;44:1;41;34:12;8:2;62:21;;;;123:4;114:14;;138:31;;;135:2;;;182:1;179;172:12;135:2;213:10;;261:11;244:29;;285:43;;;282:58;-1:-1;233:115;230:2;;;361:1;358;351:12;230:2;372:25;;-1:-1;194:344:3;;420:4:-1;411:14;;;;194:344:3;;;;;411:14:-1;194:344:3;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;194:344:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;373:13;305:66;298:89;407:12;421:14;440:13;-1:-1:-1;;;;;440:26:3;467:13;440:41;;;;;;;;;;;;;36:153:-1;66:2;61:3;58:11;36:153;;176:10;;164:23;;-1:-1;;139:12;;;;98:2;89:12;;;;114;36:153;;;274:1;267:3;263:2;259:12;254:3;250:22;246:30;315:4;311:9;305:3;299:10;295:26;356:4;350:3;344:10;340:21;389:7;380;377:20;372:3;365:33;3:399;;;440:41:3;;;;;;;;;;;;;;;;;;;;;;;12:1:-1;19;14:27;;;;67:4;61:11;56:16;;134:4;130:9;123:4;105:16;101:27;97:43;94:1;90:51;84:4;77:65;157:16;154:1;147:27;211:16;208:1;201:4;198:1;194:12;179:49;5:228;;14:27;32:4;27:9;;5:228;;406:75:3;;;;500:7;492:39;;;;;-1:-1:-1;;;492:39:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;194:344;;;;173:943;;;;;;",
   "deployedSourceMap": "173:943:3:-:0;;;633:66;627:73;736:14;731:3;726;713:38;850:1;847;831:14;826:3;811:13;803:5;796;792:17;779:73;878:16;865:29;;928:5;925:1;922;907:27;954:7;974:55;;;;1078:5;1075:1;1068:16;974:55;1009:5;1006:1;999:16",
   "source": "pragma solidity 0.6.2;\n\n/**\n* @title Proxy \n* @dev Etherland - ERC1822 Proxy contract implementation\n* @dev https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md\n*/\ncontract Proxy {\n    constructor(bytes memory constructData, address contractLogic) public {\n        assembly { \n            sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, contractLogic)\n        }\n        (bool success, bytes memory _ ) = contractLogic.delegatecall(constructData); \n        require(success, \"Construction failed\");\n    }\n\n    fallback() external payable {\n        assembly { \n            let contractLogic := sload(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7)\n            calldatacopy(0x0, 0x0, calldatasize())\n            let success := delegatecall(sub(gas(), 10000), contractLogic, 0x0, calldatasize(), 0, 0)\n            let retSz := returndatasize()\n            returndatacopy(0, 0, retSz)\n            switch success\n            case 0 {\n                revert(0, retSz)\n            }\n            default {\n                return(0, retSz)\n            }\n        }\n    }\n}",
-  "sourcePath": "/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxy.sol",
+  "sourcePath": "/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxy.sol",
   "ast": {
-    "absolutePath": "/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxy.sol",
+    "absolutePath": "/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxy.sol",
     "exportedSymbols": {
       "Proxy": [
         311
@@ -773,7 +773,7 @@
     "src": "0:1116:3"
   },
   "legacyAST": {
-    "absolutePath": "/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxy.sol",
+    "absolutePath": "/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxy.sol",
     "exportedSymbols": {
       "Proxy": [
         311
@@ -1519,6 +1519,12 @@
     "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
   },
   "networks": {
+    "1": {
+      "events": {},
+      "links": {},
+      "address": "0x66018A2AC8F28f4d68d1F018680957F2F22528Da",
+      "transactionHash": "0x226bb6a56292b56bf00e257ce92a2f4391e58ff7b7fc30ad4e2e558ab04800f3"
+    },
     "4": {
       "events": {},
       "links": {},
@@ -1527,7 +1533,7 @@
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-14T09:10:01.783Z",
+  "updatedAt": "2020-12-02T19:50:26.233Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "Etherland - ERC1822 Proxy contract implementationhttps://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md",

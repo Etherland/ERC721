@@ -21,41 +21,41 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"proxies\",\"outputs\":[{\"internalType\":\"contract OwnableDelegateProxy\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"OpenSea compliant feature\",\"methods\":{},\"title\":\"ProxyRegistry\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ProxyRegistry.sol\":\"ProxyRegistry\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/OwnableDelegateProxy.sol\":{\"keccak256\":\"0x9ad8c5230c7b83290f09725f62c4643ba6a939981a89d98bebc38ec734b8d2df\",\"urls\":[\"bzz-raw://bfc9ef75a676768422c344e00489766e39f9b8699a02ba3e0eb3117271575de3\",\"dweb:/ipfs/QmeAdHvKbwb9EhrqSMuD6xpqunKNPDo2yKU3ZuAG8fBTEa\"]},\"/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ProxyRegistry.sol\":{\"keccak256\":\"0x0a054cd34afd2166b0b009c6732b3f6d9edf3c202ac7c9d758502eed9a1f85e7\",\"urls\":[\"bzz-raw://839172c96576a0e8c6a2ab9e02f7e3d3c5c4e432970df3d0190ec744e839e416\",\"dweb:/ipfs/QmTh6CoY9NHkpktSdDTzFtQs3MCLci4pTRds9qMF7q5SwR\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b5060bd8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063c455279114602d575b600080fd5b605060048036036020811015604157600080fd5b50356001600160a01b0316606c565b604080516001600160a01b039092168252519081900360200190f35b6000602081905290815260409020546001600160a01b03168156fea26469706673582212201397f2bbc4b6bacfc3d0a304c42f5fa1a63d09aec673367aeabeb1a5f390c34564736f6c63430006020033",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063c455279114602d575b600080fd5b605060048036036020811015604157600080fd5b50356001600160a01b0316606c565b604080516001600160a01b039092168252519081900360200190f35b6000602081905290815260409020546001600160a01b03168156fea26469706673582212201397f2bbc4b6bacfc3d0a304c42f5fa1a63d09aec673367aeabeb1a5f390c34564736f6c63430006020033",
-  "sourceMap": "125:87:18:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;125:87:18;;;;;;;",
-  "deployedSourceMap": "125:87:18:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;125:87:18;;;;;;;;;;;;;;;;;;;154:55;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;154:55:18;-1:-1:-1;;;;;154:55:18;;:::i;:::-;;;;-1:-1:-1;;;;;154:55:18;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;154:55:18;;:::o",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"proxies\",\"outputs\":[{\"internalType\":\"contract OwnableDelegateProxy\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"OpenSea compliant feature\",\"methods\":{},\"title\":\"ProxyRegistry\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ProxyRegistry.sol\":\"ProxyRegistry\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/OwnableDelegateProxy.sol\":{\"keccak256\":\"0x9ad8c5230c7b83290f09725f62c4643ba6a939981a89d98bebc38ec734b8d2df\",\"urls\":[\"bzz-raw://bfc9ef75a676768422c344e00489766e39f9b8699a02ba3e0eb3117271575de3\",\"dweb:/ipfs/QmeAdHvKbwb9EhrqSMuD6xpqunKNPDo2yKU3ZuAG8fBTEa\"]},\"/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ProxyRegistry.sol\":{\"keccak256\":\"0x0a054cd34afd2166b0b009c6732b3f6d9edf3c202ac7c9d758502eed9a1f85e7\",\"urls\":[\"bzz-raw://839172c96576a0e8c6a2ab9e02f7e3d3c5c4e432970df3d0190ec744e839e416\",\"dweb:/ipfs/QmTh6CoY9NHkpktSdDTzFtQs3MCLci4pTRds9qMF7q5SwR\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060bd8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063c455279114602d575b600080fd5b605060048036036020811015604157600080fd5b50356001600160a01b0316606c565b604080516001600160a01b039092168252519081900360200190f35b6000602081905290815260409020546001600160a01b03168156fea26469706673582212208f1a07b6ea268ea3b6ac4f946720c6bef77a7ff61ca8a0ee74a2dea9d9b4979764736f6c63430006020033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063c455279114602d575b600080fd5b605060048036036020811015604157600080fd5b50356001600160a01b0316606c565b604080516001600160a01b039092168252519081900360200190f35b6000602081905290815260409020546001600160a01b03168156fea26469706673582212208f1a07b6ea268ea3b6ac4f946720c6bef77a7ff61ca8a0ee74a2dea9d9b4979764736f6c63430006020033",
+  "sourceMap": "125:87:19:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;125:87:19;;;;;;;",
+  "deployedSourceMap": "125:87:19:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;125:87:19;;;;;;;;;;;;;;;;;;;154:55;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;154:55:19;-1:-1:-1;;;;;154:55:19;;:::i;:::-;;;;-1:-1:-1;;;;;154:55:19;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;154:55:19;;:::o",
   "source": "pragma solidity 0.6.2;\n\nimport \"./OwnableDelegateProxy.sol\";\n\n/**\n* @title ProxyRegistry\n* @dev OpenSea compliant feature\n*/\ncontract ProxyRegistry {\n    mapping(address => OwnableDelegateProxy) public proxies;\n}\n",
-  "sourcePath": "/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ProxyRegistry.sol",
+  "sourcePath": "/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ProxyRegistry.sol",
   "ast": {
-    "absolutePath": "/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ProxyRegistry.sol",
+    "absolutePath": "/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ProxyRegistry.sol",
     "exportedSymbols": {
       "ProxyRegistry": [
-        2326
+        2421
       ]
     },
-    "id": 2327,
+    "id": 2422,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2320,
+        "id": 2415,
         "literals": [
           "solidity",
           "0.6",
           ".2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:22:18"
+        "src": "0:22:19"
       },
       {
-        "absolutePath": "/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/OwnableDelegateProxy.sol",
+        "absolutePath": "/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/OwnableDelegateProxy.sol",
         "file": "./OwnableDelegateProxy.sol",
-        "id": 2321,
+        "id": 2416,
         "nodeType": "ImportDirective",
-        "scope": 2327,
-        "sourceUnit": 2319,
-        "src": "24:36:18",
+        "scope": 2422,
+        "sourceUnit": 2414,
+        "src": "24:36:19",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -66,9 +66,9 @@
         "contractKind": "contract",
         "documentation": "@title ProxyRegistry\n@dev OpenSea compliant feature",
         "fullyImplemented": true,
-        "id": 2326,
+        "id": 2421,
         "linearizedBaseContracts": [
-          2326
+          2421
         ],
         "name": "ProxyRegistry",
         "nodeType": "ContractDefinition",
@@ -76,45 +76,45 @@
           {
             "constant": false,
             "functionSelector": "c4552791",
-            "id": 2325,
+            "id": 2420,
             "name": "proxies",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 2326,
-            "src": "154:55:18",
+            "scope": 2421,
+            "src": "154:55:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2318_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2413_$",
               "typeString": "mapping(address => contract OwnableDelegateProxy)"
             },
             "typeName": {
-              "id": 2324,
+              "id": 2419,
               "keyType": {
-                "id": 2322,
+                "id": 2417,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "162:7:18",
+                "src": "162:7:19",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "154:40:18",
+              "src": "154:40:19",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2318_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2413_$",
                 "typeString": "mapping(address => contract OwnableDelegateProxy)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 2323,
+                "id": 2418,
                 "name": "OwnableDelegateProxy",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 2318,
-                "src": "173:20:18",
+                "referencedDeclaration": 2413,
+                "src": "173:20:19",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_OwnableDelegateProxy_$2318",
+                  "typeIdentifier": "t_contract$_OwnableDelegateProxy_$2413",
                   "typeString": "contract OwnableDelegateProxy"
                 }
               }
@@ -123,40 +123,40 @@
             "visibility": "public"
           }
         ],
-        "scope": 2327,
-        "src": "125:87:18"
+        "scope": 2422,
+        "src": "125:87:19"
       }
     ],
-    "src": "0:213:18"
+    "src": "0:213:19"
   },
   "legacyAST": {
-    "absolutePath": "/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ProxyRegistry.sol",
+    "absolutePath": "/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ProxyRegistry.sol",
     "exportedSymbols": {
       "ProxyRegistry": [
-        2326
+        2421
       ]
     },
-    "id": 2327,
+    "id": 2422,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2320,
+        "id": 2415,
         "literals": [
           "solidity",
           "0.6",
           ".2"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:22:18"
+        "src": "0:22:19"
       },
       {
-        "absolutePath": "/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/OwnableDelegateProxy.sol",
+        "absolutePath": "/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/OwnableDelegateProxy.sol",
         "file": "./OwnableDelegateProxy.sol",
-        "id": 2321,
+        "id": 2416,
         "nodeType": "ImportDirective",
-        "scope": 2327,
-        "sourceUnit": 2319,
-        "src": "24:36:18",
+        "scope": 2422,
+        "sourceUnit": 2414,
+        "src": "24:36:19",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -167,9 +167,9 @@
         "contractKind": "contract",
         "documentation": "@title ProxyRegistry\n@dev OpenSea compliant feature",
         "fullyImplemented": true,
-        "id": 2326,
+        "id": 2421,
         "linearizedBaseContracts": [
-          2326
+          2421
         ],
         "name": "ProxyRegistry",
         "nodeType": "ContractDefinition",
@@ -177,45 +177,45 @@
           {
             "constant": false,
             "functionSelector": "c4552791",
-            "id": 2325,
+            "id": 2420,
             "name": "proxies",
             "nodeType": "VariableDeclaration",
             "overrides": null,
-            "scope": 2326,
-            "src": "154:55:18",
+            "scope": 2421,
+            "src": "154:55:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2318_$",
+              "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2413_$",
               "typeString": "mapping(address => contract OwnableDelegateProxy)"
             },
             "typeName": {
-              "id": 2324,
+              "id": 2419,
               "keyType": {
-                "id": 2322,
+                "id": 2417,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "162:7:18",
+                "src": "162:7:19",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "154:40:18",
+              "src": "154:40:19",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2318_$",
+                "typeIdentifier": "t_mapping$_t_address_$_t_contract$_OwnableDelegateProxy_$2413_$",
                 "typeString": "mapping(address => contract OwnableDelegateProxy)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 2323,
+                "id": 2418,
                 "name": "OwnableDelegateProxy",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 2318,
-                "src": "173:20:18",
+                "referencedDeclaration": 2413,
+                "src": "173:20:19",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_contract$_OwnableDelegateProxy_$2318",
+                  "typeIdentifier": "t_contract$_OwnableDelegateProxy_$2413",
                   "typeString": "contract OwnableDelegateProxy"
                 }
               }
@@ -224,11 +224,11 @@
             "visibility": "public"
           }
         ],
-        "scope": 2327,
-        "src": "125:87:18"
+        "scope": 2422,
+        "src": "125:87:19"
       }
     ],
-    "src": "0:213:18"
+    "src": "0:213:19"
   },
   "compiler": {
     "name": "solc",
@@ -236,7 +236,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-13T22:10:05.535Z",
+  "updatedAt": "2020-12-02T19:13:45.988Z",
   "devdoc": {
     "details": "OpenSea compliant feature",
     "methods": {},

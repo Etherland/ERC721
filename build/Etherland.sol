@@ -16,7 +16,6 @@ interface IERC165 {
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
 }
 
-
 /**
 * @title SafeMath
 * @dev Unsigned math operations with safety checks that revert on error
@@ -82,9 +81,6 @@ library SafeMath {
     }
 }
 
-
-
-
 /**
 * @title Counters
 * @author Matt Condon (@shrugs)
@@ -120,8 +116,6 @@ library Counters {
     }
 }
 
-
-    
 contract Storage {
     using Counters for Counters.Counter;
 
@@ -132,6 +126,7 @@ contract Storage {
     // Token base uri
     string internal _baseTokenURI;
 
+    // ERC165 supported interfaces
     bytes4 internal constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
     bytes4 internal constant _ERC721_RECEIVED = 0x150b7a02;
     bytes4 internal constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
@@ -184,14 +179,6 @@ contract Storage {
 * @dev source : openzeppelin-solidity/contracts/introspection/ERC165.sol
 */
 contract ERC165 is IERC165, Storage {
-
-    // /**
-    // * @dev A contract implementing SupportsInterfaceWithLookup
-    // * implement ERC165 itself
-    // */
-    // constructor () internal {
-    //     _registerInterface(_INTERFACE_ID_ERC165);
-    // }
 
     /**
     * @dev implement supportsInterface(bytes4) using a lookup table
@@ -259,7 +246,6 @@ interface IERC721Receiver {
     external returns (bytes4);
 }
 
-
 /**
 * Utility library of inline functions on addresses
 * @dev source : openzeppelin-solidity/contracts/utils/Address.sol
@@ -308,11 +294,6 @@ contract ERC721 is ERC165, IERC721 {
     * @dev Event emitting when an address has been approved by an owner for spending any of its NFT
     */
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
-
-    // constructor () public {
-    //     // register the supported interfaces to conform to ERC721 via ERC165
-    //     _registerInterface(_INTERFACE_ID_ERC721);
-    // }
 
     /**
     * @dev Gets the balance of the specified address
@@ -752,6 +733,7 @@ contract ERC721Full is ERC721, IERC721Full {
     }
 }
 
+
 /**
 * @title Ownable
 * @dev The Ownable contract has an owner address, and provides basic authorization control
@@ -815,7 +797,6 @@ contract Ownable {
         _owner = newOwner;
     }
 }
-
 
 /**
  * @title Administrable
@@ -953,7 +934,6 @@ contract Administrable is Ownable {
 
 }
 
-// File: Strings library
 library Strings {
     // via https://github.com/oraclize/ethereum-api/blob/master/oraclizeAPI_0.5.sol
     function strConcat(string memory _a, string memory _b, string memory _c, string memory _d, string memory _e) internal pure returns (string memory) {
@@ -1024,7 +1004,6 @@ library Strings {
 */
 contract OwnableDelegateProxy { }
 
-
 /**
 * @title ProxyRegistry
 * @dev OpenSea compliant feature
@@ -1032,8 +1011,6 @@ contract OwnableDelegateProxy { }
 contract ProxyRegistry {
     mapping(address => OwnableDelegateProxy) public proxies;
 }
-
-
 
 
 /**
@@ -1055,6 +1032,7 @@ contract TradeableERC721Token is ERC721Full, Administrable {
     * @param _to address of the future owner of the token
     */
     function mintTo(address _to) public onlyMinter {
+        require(_to != address(0), "cannot mint to address 0");
         uint256 newTokenId = _getNextTokenId();
         _mint(_to, newTokenId);
         _incrementTokenId();
@@ -1067,10 +1045,7 @@ contract TradeableERC721Token is ERC721Full, Administrable {
      */
     function batchMintTo(uint _total, address _to) public onlyMinter {
         require(_total > 0, "mint minimum 1 token");
-        require(_to != address(0), "cannot mint to address 0");
-
         for (uint i = 0; i < _total; i++) mintTo(_to);
-
     }
 
     /**
@@ -1115,8 +1090,6 @@ contract TradeableERC721Token is ERC721Full, Administrable {
         return super.isApprovedForAll(owner, operator);
     }
 }
-
-
 
 /**
 * @title IpfsHashs
@@ -1173,7 +1146,7 @@ contract Proxiable {
  * all rights are reserved to EtherLand ltd
  *
  * @dev deployed with compiler version 0.6.2
- */
+*/
 contract Etherland is TradeableERC721Token, IpfsHashs, Proxiable {
     /**
     * @dev initialized state MUST remain set to false on Implementation Contract 
@@ -1247,6 +1220,17 @@ contract Etherland is TradeableERC721Token, IpfsHashs, Proxiable {
     */
     function updateCode(address newCode) public onlyOwner {
         updateCodeAddress(newCode);
+    }
+
+    /**
+    * @dev Mint a new token with document hash corresponding to an IPFS CID
+    * @param _to address of the future owner of the token
+    * @param docType string representing the type of document that is stored to IPFS (can be "pdf" or any other token related document)
+    * @param _hash string representing the hash of a document with type equals to `docType`
+    */
+    function mintWithIpfsHash(address _to, string memory docType, string memory _hash) public onlyMinter {
+        mintTo(_to);
+        setIpfsHash(_currentTokenId, docType, _hash);
     }
 
 }

@@ -15,15 +15,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"proxiableUUID\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Etherland - EIP-1822 Proxiable contract implementationhttps://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md\",\"methods\":{},\"title\":\"Proxiable\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxiable.sol\":\"Proxiable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxiable.sol\":{\"keccak256\":\"0x7a34d249440c350693e954c8860700d121fabae8d21ca4041d3ffb2e4cd2325e\",\"urls\":[\"bzz-raw://96bc4e443578a70ccaa25738ea0b1b47b99619859ca9ada835bc43d48cf9fda9\",\"dweb:/ipfs/QmVb1FTRjA8AJyt4ZTbUqBPWeSiXN8245cmQVg7qi8ajaq\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50609f8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c806352d1902d14602d575b600080fd5b60336045565b60408051918252519081900360200190f35b7fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf79056fea264697066735822122076cc7f87a2b6656c5a0fe72d0629b9fe02b4e785bb075c685036ed8807af1ef764736f6c63430006020033",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c806352d1902d14602d575b600080fd5b60336045565b60408051918252519081900360200190f35b7fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf79056fea264697066735822122076cc7f87a2b6656c5a0fe72d0629b9fe02b4e785bb075c685036ed8807af1ef764736f6c63430006020033",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"proxiableUUID\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Etherland - EIP-1822 Proxiable contract implementationhttps://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md\",\"methods\":{},\"title\":\"Proxiable\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxiable.sol\":\"Proxiable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxiable.sol\":{\"keccak256\":\"0x7a34d249440c350693e954c8860700d121fabae8d21ca4041d3ffb2e4cd2325e\",\"urls\":[\"bzz-raw://96bc4e443578a70ccaa25738ea0b1b47b99619859ca9ada835bc43d48cf9fda9\",\"dweb:/ipfs/QmVb1FTRjA8AJyt4ZTbUqBPWeSiXN8245cmQVg7qi8ajaq\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50609f8061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c806352d1902d14602d575b600080fd5b60336045565b60408051918252519081900360200190f35b7fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf79056fea2646970667358221220d5be58d270a9ba2db74559f88f04e49a00da015626d103566034b5b9088017c164736f6c63430006020033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c806352d1902d14602d575b600080fd5b60336045565b60408051918252519081900360200190f35b7fc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf79056fea2646970667358221220d5be58d270a9ba2db74559f88f04e49a00da015626d103566034b5b9088017c164736f6c63430006020033",
   "sourceMap": "181:708:2:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;181:708:2;;;;;;;",
   "deployedSourceMap": "181:708:2:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;181:708:2;;;;;;;;;;;;;;;;;;;742:145;;;:::i;:::-;;;;;;;;;;;;;;;;;814:66;742:145;:::o",
   "source": "pragma solidity 0.6.2;\n\n/**\n* @title Proxiable\n* @dev Etherland - EIP-1822 Proxiable contract implementation\n* @dev https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md\n*/\ncontract Proxiable {\n    // Code position in storage is keccak256(\"PROXIABLE\") = \"0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7\"\n\n    function updateCodeAddress(address newAddress) internal {\n        require(\n            bytes32(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7) == Proxiable(newAddress).proxiableUUID(),\n            \"Not compatible\"\n        );\n        assembly { // solium-disable-line\n            sstore(0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7, newAddress)\n        }\n    }\n    function proxiableUUID() public pure returns (bytes32) {\n        return 0xc5f16f0fcc639fa48a6947836d9850f504798523bf8c9a3a87d5876cf622bcf7;\n    }\n}\n",
-  "sourcePath": "/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxiable.sol",
+  "sourcePath": "/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxiable.sol",
   "ast": {
-    "absolutePath": "/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxiable.sol",
+    "absolutePath": "/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxiable.sol",
     "exportedSymbols": {
       "Proxiable": [
         280
@@ -498,7 +498,7 @@
     "src": "0:890:2"
   },
   "legacyAST": {
-    "absolutePath": "/Users/proapps/Desktop/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxiable.sol",
+    "absolutePath": "/Users/proapps/Documents/Mat/Apps/Etherland/ERC721/contracts/ERC1822/Proxiable.sol",
     "exportedSymbols": {
       "Proxiable": [
         280
@@ -978,7 +978,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-13T22:10:05.495Z",
+  "updatedAt": "2020-12-02T19:13:45.945Z",
   "devdoc": {
     "details": "Etherland - EIP-1822 Proxiable contract implementationhttps://github.com/ethereum/EIPs/blob/master/EIPS/eip-1822.md",
     "methods": {},
