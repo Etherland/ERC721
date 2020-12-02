@@ -24,9 +24,6 @@ contract('Proxy', (accounts) => {
   beforeEach(async () => {
     proxyRegistry = await ProxyRegistry.new({ from: owner });
     code = await Etherland.new({ from: user1 });
-    /**
-     * @todo FIX error `encodeABI is not a function`
-     */
     const constructData = code.contract.methods.init(tokenName, tokenSymbol, proxyRegistry.address, baseURI, owner).encodeABI();
     proxy = await Proxy.new(constructData, code.address, { from: owner });
     etherland = await Etherland.at(proxy.address);
@@ -286,36 +283,23 @@ contract('Proxy', (accounts) => {
   });
 
   it('testing admin rights', async () => {
-    // owner is minter
     (await etherland.canMint({ from: owner })).toString().should.equal('true');
-    // owner is minter-burner
     (await etherland.canMintBurn({ from: owner })).toString().should.equal('true');
-    // user1 is not an admin
     (await etherland.canMint({ from: user1 })).toString().should.equal('false');
     (await etherland.canMintBurn({ from: user1 })).toString().should.equal('false');
-    // user1 cant mint
     await etherland.batchMintTo(5, user1, { from: user1 }).should.be.rejectedWith(EVMRevert);
-    // user1 cant grant admin access
     await etherland.grantMinterRights(user1, { from: user1 }).should.be.rejectedWith(EVMRevert);
     await etherland.grantMinterBurnerRights(user1, { from: user1 }).should.be.rejectedWith(EVMRevert);
-    // owner can grant minter admin rights
     await etherland.grantMinterRights(user1, { from: owner }).should.be.fulfilled;
-    // user1 can mint
     (await etherland.canMint({ from: user1 })).toString().should.equal('true');
     await etherland.batchMintTo(5, user1, { from: user1 }).should.be.fulfilled;
-    // user1 cant burn
     (await etherland.canMintBurn({ from: user1 })).toString().should.equal('false');
     await etherland.burn(1, { from: user1 }).should.be.rejectedWith(EVMRevert);
-    // owner can grant burner admin right
     await etherland.grantMinterBurnerRights(user1, { from: owner }).should.be.fulfilled;
-    // user1 can burn tokens
     (await etherland.canMintBurn({ from: user1 })).toString().should.equal('true');
     await etherland.burn(1, { from: user1 }).should.be.fulfilled;
-    // user2 cant revoke admin rights
     await etherland.revokeAdminRights(user1, { from: user2 }).should.be.rejectedWith(EVMRevert);
-    // owner can revoke admin rights
     await etherland.revokeAdminRights(user1, { from: owner }).should.be.fulfilled;
-    // user1 is not an admin anymore
     (await etherland.canMint({ from: user1 })).toString().should.equal('false');
     (await etherland.canMintBurn({ from: user1 })).toString().should.equal('false');
     await etherland.batchMintTo(5, user1, { from: user1 }).should.be.rejectedWith(EVMRevert);

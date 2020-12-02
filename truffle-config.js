@@ -1,8 +1,8 @@
-// withadmins VERSION
+require('dotenv').config()
+
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
-const MNEMONIC = '';
-const INFURA_KEY = '';
+const { MNEMONIC, INFURA_KEY } = process.env;
 
 const solcStable = {
   version: '0.6.2',
@@ -62,3 +62,4 @@ module.exports = {
     solc: solcStable,
   },
 };
+
