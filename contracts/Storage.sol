@@ -12,6 +12,7 @@ contract Storage {
     // Token base uri
     string internal _baseTokenURI;
 
+    // ERC165 supported interfaces
     bytes4 internal constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
     bytes4 internal constant _ERC721_RECEIVED = 0x150b7a02;
     bytes4 internal constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
