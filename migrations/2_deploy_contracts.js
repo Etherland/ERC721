@@ -13,7 +13,7 @@ const osProxies = {
 };
 const DEPLOY_ETHERLAND_ERC721 = true;
 const NAME = 'Etherland';
-const SYMBOL = 'ELAND';
+const SYMBOL = 'LANDID';
 const BASE_TOKEN_URI = 'https://fieldcoin-nft.herokuapp.com/api/token/';
 /* Etherland CEO */
 const owner = '0x21fAC178E0b0df2Db51A06d52B32DE4479a8b3F1';
