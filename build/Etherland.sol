@@ -16,6 +16,7 @@ interface IERC165 {
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
 }
 
+
 /**
 * @title SafeMath
 * @dev Unsigned math operations with safety checks that revert on error
@@ -81,6 +82,7 @@ library SafeMath {
     }
 }
 
+
 /**
 * @title Counters
 * @author Matt Condon (@shrugs)
@@ -116,6 +118,7 @@ library Counters {
     }
 }
 
+    
 contract Storage {
     using Counters for Counters.Counter;
 
@@ -196,6 +199,7 @@ contract ERC165 is IERC165, Storage {
     }
 }
 
+
 /**
 * @title ERC721 Non-Fungible Token Standard basic interface
 * @dev see https://eips.ethereum.org/EIPS/eip-721
@@ -220,6 +224,7 @@ interface IERC721 is IERC165 {
 
     function safeTransferFromWithData(address from, address to, uint256 tokenId, bytes calldata data) external;
 }
+
 
 /**
 * @title ERC721 token receiver interface
@@ -246,6 +251,7 @@ interface IERC721Receiver {
     external returns (bytes4);
 }
 
+
 /**
 * Utility library of inline functions on addresses
 * @dev source : openzeppelin-solidity/contracts/utils/Address.sol
@@ -270,6 +276,7 @@ library Address {
         return size > 0;
     }
 }
+
 
 /**
 * @title ERC721 Non-Fungible Token Standard basic implementation
@@ -543,7 +550,6 @@ interface IERC721Full is IERC721 {
     function symbol() external view returns (string memory);
 }
 
-
 /**
 * @title Full ERC721 Token
 * This implementation includes all the required and some optional functionality of the ERC721 standard
@@ -798,6 +804,7 @@ contract Ownable {
     }
 }
 
+
 /**
  * @title Administrable
  * @dev Handle allowances for NFTs administration :
@@ -934,6 +941,7 @@ contract Administrable is Ownable {
 
 }
 
+
 library Strings {
     // via https://github.com/oraclize/ethereum-api/blob/master/oraclizeAPI_0.5.sol
     function strConcat(string memory _a, string memory _b, string memory _c, string memory _d, string memory _e) internal pure returns (string memory) {
@@ -998,11 +1006,13 @@ library Strings {
     }
 }
 
+
 /**
 * @title OwnableDelegateProxy
 * @dev OpenSea compliant feature
 */
 contract OwnableDelegateProxy { }
+
 
 /**
 * @title ProxyRegistry
@@ -1091,6 +1101,7 @@ contract TradeableERC721Token is ERC721Full, Administrable {
     }
 }
 
+
 /**
 * @title IpfsHashs
 * @dev Provide methods to store and retrieve tokens IPFS CIDs
@@ -1113,6 +1124,7 @@ contract IpfsHashs is Administrable {
     }
 
 }
+
 
 /**
 * @title Proxiable
@@ -1146,7 +1158,7 @@ contract Proxiable {
  * all rights are reserved to EtherLand ltd
  *
  * @dev deployed with compiler version 0.6.2
-*/
+ */
 contract Etherland is TradeableERC721Token, IpfsHashs, Proxiable {
     /**
     * @dev initialized state MUST remain set to false on Implementation Contract 
