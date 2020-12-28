@@ -30,4 +30,4 @@ run ```npm install -g npm@5.6.0```
 - node : 8.11.2
 run ```nvm use 8.11.2```
 # 
-*Something went wrong ? support@proapps.fr* 
+*contact: support@etherland.io* 
